@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Village_Sarabhai — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box}
+:root{
+  --bg:#f5f4f0;--fg:#1a1a1a;--mid:#555;--dim:#e0deda;--accent:#1a1a1a;
+  --RH:28px;--RW:28px;--NH:48px;
+  --mono:'Helvetica Neue',Helvetica,Arial,sans-serif;
+}
+html,body{margin:0;padding:0;width:100%;height:100%;overflow:hidden;background:var(--bg);font-family:var(--mono);cursor:none}
+#scroll-root{position:fixed;top:0;left:0;right:0;bottom:0;overflow-y:scroll;overflow-x:hidden;padding-top:28px;padding-left:28px}
+#scroll-root::-webkit-scrollbar{width:2px}
+#scroll-root::-webkit-scrollbar-track{background:var(--bg)}
+#scroll-root::-webkit-scrollbar-thumb{background:var(--dim)}
+
+nav{position:sticky;top:0;height:var(--NH);z-index:1800;display:flex;justify-content:space-between;align-items:center;padding:0 32px;margin-left:-28px;padding-left:60px;background:rgba(245,244,240,0.95);backdrop-filter:blur(12px)}
+.nav-back{display:flex;align-items:center;gap:20px;text-decoration:none;color:var(--fg);font-size:8px;letter-spacing:.2em;text-transform:uppercase;transition:opacity .2s}
+.nav-back:hover{opacity:.4}
+.nav-project{font-size:8px;letter-spacing:.2em;color:var(--mid);text-transform:uppercase}
+.nav-nr{opacity:.4;margin-right:10px}
+.nav-meta{font-size:8px;color:var(--mid);letter-spacing:.1em}
+#wrap{min-height:100%;padding:0}
+
+.project-layout{display:grid;grid-template-columns:38% 62%;align-items:start}
+.col-text{padding:48px 44px 80px 52px}
+.proj-nr{font-size:7px;letter-spacing:.28em;color:#aaa;margin-bottom:16px;text-transform:uppercase}
+.proj-title{font-size:clamp(20px,2.5vw,34px);font-weight:300;letter-spacing:-.02em;line-height:1.2;color:var(--fg);margin:0 0 40px}
+.meta-table{margin-bottom:48px}
+.meta-row{display:flex;flex-direction:column;padding:6px 0}
+.meta-label{font-size:7px;letter-spacing:.25em;color:#aaa;text-transform:uppercase;margin-bottom:4px}
+.meta-value{font-size:10px;letter-spacing:.08em;color:var(--fg)}
+.proj-text{font-size:11px;line-height:2.1;color:var(--mid);letter-spacing:.04em;max-width:360px}
+.proj-text p+p{margin-top:1.4em}
+.col-images{padding:48px 52px 80px 44px}
+.img-block{margin-bottom:60px}
+.img-block img{display:block;width:100%;height:auto}
+.img-caption{font-size:7px;letter-spacing:.18em;color:#aaa;text-transform:uppercase;padding:10px 0 0}
+.img-row{display:flex;gap:3px;margin-bottom:60px}
+.img-row .img-block{flex:1;margin-bottom:0}
+
+/* ── Custom Video Controls ── */
+.video-block{margin-bottom:60px;position:relative;}
+.video-block video{display:block;width:100%;height:auto;}
+.vid-controls{
+  display:flex;align-items:center;gap:12px;
+  padding:8px 0 0;
+}
+.vid-btn{
+  background:none;border:none;cursor:none;
+  font-family:var(--mono);font-size:7px;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--fg);opacity:.5;
+  padding:0;transition:opacity .2s;flex-shrink:0;
+}
+.vid-btn:hover{opacity:1;}
+.vid-scrubber-wrap{
+  flex:1;position:relative;height:12px;
+  display:flex;align-items:center;cursor:none;
+}
+.vid-scrubber-track{
+  position:absolute;left:0;right:0;height:1px;
+  background:var(--dim);
+}
+.vid-scrubber-fill{
+  position:absolute;left:0;top:0;height:100%;
+  width:0%;background:var(--fg);pointer-events:none;
+}
+.vid-scrubber-thumb{
+  position:absolute;top:50%;
+  width:5px;height:5px;background:var(--fg);border-radius:50%;
+  transform:translate(-50%,-50%);
+  pointer-events:none;transition:transform .1s;
+}
+.vid-scrubber-wrap:hover .vid-scrubber-thumb{transform:translate(-50%,-50%) scale(1.5);}
+.vid-time{
+  font-size:7px;letter-spacing:.12em;color:#aaa;
+  flex-shrink:0;min-width:60px;text-align:right;
+}
+
+/* SLIDER */
+.slider-frame{width:100%;position:relative;margin-bottom:0;overflow:hidden;}
+.slider-frame img.active{display:block;width:100%;height:auto;}
+.slider-frame video.slider-vid{display:none;width:100%;height:auto;}
+.slider-mute{position:absolute;bottom:12px;right:12px;background:rgba(245,244,240,0.88);border:1px solid var(--dim);color:var(--fg);font-family:var(--mono);font-size:7px;letter-spacing:.18em;text-transform:uppercase;padding:5px 10px;cursor:none;opacity:0;pointer-events:none;transition:opacity .2s;z-index:5;}
+.slider-mute.show{opacity:.7;pointer-events:all;}
+.slider-mute:hover{opacity:1;}
+.slider-nav{display:flex;align-items:center;gap:20px;margin-top:12px}
+.slider-nav button{background:none;border:none;cursor:none;font-size:8px;letter-spacing:.2em;color:var(--fg);opacity:.5;padding:0;font-family:var(--mono);text-transform:uppercase;transition:opacity .2s}
+.slider-nav button:hover{opacity:1}
+.slider-nav span{font-size:7px;letter-spacing:.2em;color:#aaa}
+#slider-text{font-size:11px;line-height:2.1;color:var(--mid);letter-spacing:.04em}
+#slider-text p+p{margin-top:1.4em}
+
+/* ── SPLIT FOOTER ─────────────────────────── */
+.split-footer{
+  display:grid;grid-template-columns:1fr 1fr;
+  height:650px;margin-top:60px;
+  width:calc(100% + 28px);margin-left:-28px;
+  overflow:hidden;
+}
+.split-half{
+  position:relative;background:#1a1a1a;
+  overflow:hidden;cursor:none;text-decoration:none;display:block;
+  pointer-events:all !important;z-index:1;
+}
+.split-half.split-next{border-left:none;}
+.vticker-track{
+  position:absolute;left:0;right:0;
+  display:flex;flex-direction:column;align-items:center;
+  will-change:transform;
+  pointer-events:none !important;
+}
+.vticker-track img{
+  display:block;width:90%;height:auto;
+  padding:40px 0;margin:0 auto;
+  user-select:none;pointer-events:none;opacity:0.92;flex-shrink:0;
+}
+.split-hover-label{
+  position:absolute;bottom:28px;
+  font-size:7px;letter-spacing:.22em;color:rgba(255,255,255,0);
+  text-transform:uppercase;font-family:'IBM Plex Mono',monospace;
+  pointer-events:none;transition:color .25s;white-space:nowrap;
+}
+.split-half.split-last .split-hover-label{left:28px;}
+.split-half.split-next .split-hover-label{right:28px;}
+.split-half.hovered .split-hover-label{color:rgba(255,255,255,0.65);}
+.split-half.hovered .vticker-track img{opacity:1;}
+
+#ruler-canvas{position:fixed;top:0;left:0;pointer-events:none;z-index:2000}
+#cx,#cy{position:fixed;pointer-events:none;z-index:9999;background:var(--accent);opacity:.5}
+#cx{height:1px;width:100vw;top:0;left:0}
+#cy{width:1px;height:100vh;left:0;top:0}
+#cdot{position:fixed;width:4px;height:4px;background:var(--accent);border-radius:50%;pointer-events:none;z-index:10000;transform:translate(-50%,-50%)}
+#crx{position:fixed;top:0;width:1px;height:28px;background:var(--accent);opacity:.8;pointer-events:none;z-index:2001}
+#cry{position:fixed;left:0;height:1px;width:28px;background:var(--accent);opacity:.8;pointer-events:none;z-index:2001}
+#coords{position:fixed;bottom:14px;left:38px;font-size:8px;letter-spacing:.12em;color:var(--accent);opacity:.7;z-index:9000;pointer-events:none}
+#loader{position:fixed;inset:0;background:var(--bg);z-index:99999;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;transition:opacity .5s,visibility .5s}
+#loader.hidden{opacity:0;visibility:hidden}
+.l-pct{font-size:8px;letter-spacing:.4em;color:var(--accent)}
+.l-track{width:180px;height:1px;background:var(--dim);position:relative}
+.l-fill{position:absolute;left:0;top:0;height:100%;width:0;background:var(--accent);transition:width .08s linear}
+</style>
+</head>
+<body>
+
+<div id="loader">
+  <div class="l-pct" id="lpct">000%</div>
+  <div class="l-track"><div class="l-fill" id="lfill"></div></div>
+</div>
+
+<div id="cx"></div><div id="cy"></div><div id="cdot"></div>
+<div id="crx"></div><div id="cry"></div>
+<div id="coords">X: 0.0 cm / Y: 0.0 cm</div>
+<canvas id="ruler-canvas"></canvas>
+
+<div id="scroll-root">
+  <div id="wrap">
+
+    <nav>
+      <a href="../../web.html" class="nav-back"><span>BACK</span></a>
+      <div class="nav-project"><span class="nav-nr">05</span>Village_Sarabhai</div>
+      <div class="nav-meta" id="nav-time">00:00:00</div>
+    </nav>
+
+    <div class="project-layout">
+      <div class="col-text">
+        <div class="proj-nr">04 / 2024</div>
+        <h1 class="proj-title">Village_Sarabhai</h1>
+        <div class="meta-table">
+          <div class="meta-row"><span class="meta-label">Typologie</span><span class="meta-value">Wohnen</span></div>
+          <div class="meta-row"><span class="meta-label">Standort</span><span class="meta-value">Ahmedabad, Indien</span></div>
+          <div class="meta-row"><span class="meta-label">Jahr</span><span class="meta-value">2025-26</span></div>
+          <div class="meta-row"><span class="meta-label">Modul</span><span class="meta-value">Entwerfen</span></div>
+          <div class="meta-row"><span class="meta-label">Gruppenpartner</span><span class="meta-value">Justus Büttner</span></div>
+          <div class="meta-row"><span class="meta-label">Professur</span><span class="meta-value">Prof.in Marianne Müller AA., <br>Dana Andronescu M.Sc.</span></div>
+        </div>
+        <div class="proj-text">
+          <p>Ausgangspunkt unseres Projekts war die Villa Sarabhai von Le Corbusier, deren Grundrissstruktur wir zunächst intensiv untersuchten und anschließend transformierten, bis wir eine eigenständige, schlüssige Anordnung von Räumen und Beziehungen gefunden hatten. Aufbauend auf dieser neu entwickelten Grundrisskonstellation begannen wir, im Bestand gestalterisch einzugreifen. Ein zentrales Element war das Voranstellen einer Bogenarkade vor die Fassade, die sowohl räumlich als auch atmosphärisch an die vorhandenen Bogentonnendecken anknüpft und deren Motiv weiterführt. Dadurch entsteht eine stärkere plastische Tiefe sowie eine vermittelnde Zone zwischen Innen- und Außenraum. Auch in der Materialität und Farbigkeit orientierten wir uns am Kontext: Warme, erdige Rottöne greifen die architektonische Sprache des Ortes sowie die landschaftlichen und kulturellen Bezüge Indiens auf und verleihen dem Entwurf eine ortsspezifische Identität.</p>
+        </div>
+      </div>
+
+      <div class="col-images">
+        <div class="img-block">
+          <img src="../../Sarabhai/rendertop.png" alt="Renderaußen">
+          <div class="img-caption">Rendering</div>
+        </div>
+        <div class="img-block">
+          <img src="../../sarabhai/Villa_Sarabhai.jpg" alt="Bestandsaufnahme">
+          <div class="img-caption">Villa Sarabhai © FLC / ADAGP / Manuel Bougot</div>
+        </div>
+
+        <!-- VIDEO MIT CUSTOM CONTROLS -->
+        <div class="video-block">
+          <video id="vid-standalone" autoplay muted loop playsinline>
+            <source src="../../sarabhai/animation.mp4" type="video/mp4">
+          </video>
+          <div class="vid-controls">
+            <button class="vid-btn" id="btn-playpause">Pause</button>
+            <div class="vid-scrubber-wrap" id="scrubber-wrap">
+              <div class="vid-scrubber-track">
+                <div class="vid-scrubber-fill" id="scrubber-fill"></div>
+              </div>
+              <div class="vid-scrubber-thumb" id="scrubber-thumb"></div>
+            </div>
+            <button class="vid-btn" id="btn-standalone">Ton ein</button>
+            <div class="vid-time" id="vid-time-display">0:00 / 0:00</div>
+          </div>
+          <div class="img-caption" style="margin-top:6px">Villa Sarabhai, Le Corbusier 1951-56</div>
+        </div>
+
+        <div class="img-block">
+          <img src="../../sarabhai/konstellation.png" alt="Grundriss">
+          <div class="img-caption">Grundriss</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-layout">
+      <div class="col-text">
+        <div id="slider-text"></div>
+      </div>
+      <div class="col-images">
+        <div class="slider-frame" id="slider-frame">
+          <img id="slider-img" class="active" src="" alt="">
+          <video id="slider-vid" class="slider-vid" autoplay muted loop playsinline></video>
+          <button class="slider-mute" id="slider-mute-btn">Ton ein</button>
+        </div>
+        <div class="img-caption" id="slider-caption"></div>
+        <div class="slider-nav">
+          <button id="prev">&#8592; BACK</button>
+          <span id="slider-nr"></span>
+          <button id="next">NEXT &#8594;</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- SPLIT FOOTER -->
+    <div class="split-footer">
+      <a href="../Tiny_House/index.html" class="split-half split-last">
+        <div class="vticker-track" id="vtick-last"></div>
+        <div class="split-hover-label">← Tiny_House</div>
+      </a>
+      <a href="../Markethall/index.html" class="split-half split-next">
+        <div class="vticker-track" id="vtick-next"></div>
+        <div class="split-hover-label">Markethall_Heilbronn →</div>
+      </a>
+    </div>
+
+  </div>
+</div>
+
+<script>
+/* LOADER */
+(function(){
+  var loader=document.getElementById('loader'),fill=document.getElementById('lfill'),lbl=document.getElementById('lpct'),p=0;
+  var iv=setInterval(function(){
+    p=Math.min(p+Math.random()*15,100);var f=Math.floor(p);
+    fill.style.width=f+'%';lbl.textContent=String(f).padStart(3,'0')+'%';
+    if(p>=100){clearInterval(iv);setTimeout(function(){loader.classList.add('hidden');},300);}
+  },55);
+})();
+
+/* ── VIDEO CONTROLS ── */
+(function(){
+  var vid    = document.getElementById('vid-standalone');
+  var btnPP  = document.getElementById('btn-playpause');
+  var btnM   = document.getElementById('btn-standalone');
+  var wrap   = document.getElementById('scrubber-wrap');
+  var fill   = document.getElementById('scrubber-fill');
+  var thumb  = document.getElementById('scrubber-thumb');
+  var timeEl = document.getElementById('vid-time-display');
+  var dragging = false;
+
+  function fmt(s){
+    s = Math.floor(s || 0);
+    return Math.floor(s / 60) + ':' + (s % 60 < 10 ? '0' : '') + (s % 60);
+  }
+  function setProgress(pct){
+    fill.style.width = pct + '%';
+    thumb.style.left = pct + '%';
+  }
+  function updateTime(){
+    var dur = vid.duration || 0;
+    var cur = vid.currentTime || 0;
+    var pct = dur ? (cur / dur) * 100 : 0;
+    setProgress(pct);
+    timeEl.textContent = fmt(cur) + ' / ' + fmt(dur);
+  }
+
+  vid.addEventListener('timeupdate', updateTime);
+  vid.addEventListener('loadedmetadata', updateTime);
+
+  /* Play / Pause */
+  btnPP.addEventListener('click', function(){
+    if(vid.paused){ vid.play(); btnPP.textContent = 'Pause'; }
+    else { vid.pause(); btnPP.textContent = 'Play'; }
+  });
+  vid.addEventListener('play',  function(){ btnPP.textContent = 'Pause'; });
+  vid.addEventListener('pause', function(){ btnPP.textContent = 'Play'; });
+
+  /* Mute */
+  btnM.addEventListener('click', function(){
+    vid.muted = !vid.muted;
+    btnM.textContent = vid.muted ? 'Ton ein' : 'Ton aus';
+  });
+
+  /* Scrubber — click & drag */
+  function seekFromEvent(e){
+    var rect = wrap.getBoundingClientRect();
+    var pct  = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
+    vid.currentTime = pct * (vid.duration || 0);
+    setProgress(pct * 100);
+  }
+  wrap.addEventListener('mousedown', function(e){
+    dragging = true;
+    seekFromEvent(e);
+  });
+  document.addEventListener('mousemove', function(e){
+    if(dragging) seekFromEvent(e);
+  });
+  document.addEventListener('mouseup', function(){
+    dragging = false;
+  });
+})();
+
+/* SLIDER */
+var slides=[
+  {img:'../../sarabhai/earlyrender.jpg',caption:'Frühes Rendering',text:'<p>Eine der prägenden Ideen der Umgestaltung war die Interaktion mit den Zwischenräumen. Hier exemplarisch zu sehen, sind die bedachten Zwischenräume, die den öffentlichen Raum strukturieren. Dabei werden die Prinzipien von "tension and release" genutzt. Aus den Tunneln wird in größere Gartenbereiche zwischen den Wohnblöcken geleitet.</p>'},
+  {img:'../../sarabhai/ahmedabad.png',caption:'Grundriss_EG',text:'<p>Ahmedabad ist eine Stadt im Westen Indiens, gezeichnet von dichter urbaner Struktur, intensivem Klima und einer starken architektonischen Prägung der Moderne. In diesem Kontext bildet das bewaldete Anwesen der Familie Sarabhai einen bewussten Gegenpol zur Stadt.</p>'}
+];
+var current=0;
+var sliderVid=document.getElementById('slider-vid');
+var sliderImg=document.getElementById('slider-img');
+var sliderMute=document.getElementById('slider-mute-btn');
+sliderMute.addEventListener('click',function(){sliderVid.muted=!sliderVid.muted;this.textContent=sliderVid.muted?'Ton ein':'Ton aus';});
+function showSlide(i){
+  current=(i+slides.length)%slides.length;var s=slides[current];
+  if(s.type==='video'){sliderImg.style.display='none';sliderVid.style.display='block';sliderVid.src=s.img;sliderVid.muted=true;sliderVid.load();sliderVid.play();sliderMute.classList.add('show');}
+  else{sliderVid.style.display='none';sliderVid.pause();sliderVid.src='';sliderImg.style.display='block';sliderImg.src=s.img;sliderMute.classList.remove('show');}
+  document.getElementById('slider-caption').textContent=s.caption;
+  document.getElementById('slider-text').innerHTML=s.text;
+  document.getElementById('slider-nr').textContent=(current+1)+' / '+slides.length;
+}
+document.getElementById('prev').addEventListener('click',function(){showSlide(current-1);});
+document.getElementById('next').addEventListener('click',function(){showSlide(current+1);});
+showSlide(0);
+
+/* LINEALE */
+var RH=28,RW=28;
+var scrollRoot=document.getElementById('scroll-root');
+var cmProbe=document.createElement('div');
+cmProbe.style.cssText='position:fixed;width:1cm;height:1px;visibility:hidden;pointer-events:none;top:0;left:0;';
+document.body.appendChild(cmProbe);
+function getPxPerCm(){return cmProbe.getBoundingClientRect().width;}
+var $cx=document.getElementById('cx'),$cy=document.getElementById('cy');
+var $dot=document.getElementById('cdot'),$co=document.getElementById('coords');
+var $crx=document.getElementById('crx'),$cry=document.getElementById('cry');
+document.addEventListener('mousemove',function(e){
+  var x=e.clientX,y=e.clientY;
+  $cx.style.top=y+'px';$cy.style.left=x+'px';
+  $dot.style.left=x+'px';$dot.style.top=y+'px';
+  $crx.style.left=x+'px';$cry.style.top=y+'px';
+  var ppc=getPxPerCm();
+  $co.textContent='X: '+((x-RW+scrollRoot.scrollLeft)/ppc).toFixed(1)+' cm  /  Y: '+((y-RH+scrollRoot.scrollTop)/ppc).toFixed(1)+' cm';
+});
+function redrawRulers(){
+  var cv=document.getElementById('ruler-canvas');
+  var dpr=window.devicePixelRatio||1,ppc=getPxPerCm();
+  var vv=window.visualViewport,W=vv?vv.width:window.innerWidth,H=vv?vv.height:window.innerHeight;
+  cv.width=Math.round(W*dpr);cv.height=Math.round(H*dpr);cv.style.width=W+'px';cv.style.height=H+'px';
+  var c=cv.getContext('2d');c.scale(dpr,dpr);c.clearRect(0,0,W,H);
+  var scrollX=scrollRoot.scrollLeft/ppc,scrollY=scrollRoot.scrollTop/ppc;
+  c.fillStyle='#f5f4f0';c.fillRect(0,0,RW,RH);
+  c.strokeStyle='#e0deda';c.lineWidth=1;
+  c.beginPath();c.moveTo(RW-.5,0);c.lineTo(RW-.5,RH);c.stroke();
+  c.beginPath();c.moveTo(0,RH-.5);c.lineTo(RW,RH-.5);c.stroke();
+  c.fillStyle='#1a1a1a';c.font='7px "IBM Plex Mono",monospace';c.textAlign='center';c.textBaseline='middle';c.fillText('cm',RW/2,RH/2);
+  c.fillStyle='#f5f4f0';c.fillRect(RW,0,W-RW,RH);
+  c.strokeStyle='#e0deda';c.beginPath();c.moveTo(RW,RH-.5);c.lineTo(W,RH-.5);c.stroke();
+  c.font='7px "IBM Plex Mono",monospace';c.textAlign='left';c.textBaseline='bottom';
+  for(var mm=Math.floor(scrollX*10);;mm++){var x=RW+(mm/10-scrollX)*ppc;if(x>W+1)break;if(x<RW)continue;var isCm=(mm%10===0),is5=(mm%5===0),th=isCm?14:is5?9:5;c.fillStyle=isCm?'#999':'#ccc';c.fillRect(Math.round(x),RH-th,1,th);if(isCm&&x>RW+2){c.fillStyle='#888';c.fillText(Math.round(mm/10)+'',x+2,RH-15);}}
+  c.fillStyle='#f5f4f0';c.fillRect(0,RH,RW,H-RH);
+  c.strokeStyle='#e0deda';c.beginPath();c.moveTo(RW-.5,RH);c.lineTo(RW-.5,H);c.stroke();
+  c.font='7px "IBM Plex Mono",monospace';
+  for(var mm2=Math.floor(scrollY*10);;mm2++){var y=RH+(mm2/10-scrollY)*ppc;if(y>H+1)break;if(y<RH)continue;var isCm2=(mm2%10===0),is52=(mm2%5===0),tw=isCm2?14:is52?9:5;c.fillStyle=isCm2?'#999':'#ccc';c.fillRect(RW-tw,Math.round(y),tw,1);if(isCm2&&y>RH+2){c.save();c.translate(RW-15,y-2);c.rotate(-Math.PI/2);c.fillStyle='#888';c.textAlign='left';c.textBaseline='alphabetic';c.fillText(Math.round(mm2/10)+'',0,0);c.restore();}}
+}
+scrollRoot.addEventListener('scroll',redrawRulers,{passive:true});
+window.addEventListener('resize',redrawRulers);
+if(window.visualViewport){window.visualViewport.addEventListener('resize',redrawRulers);window.visualViewport.addEventListener('scroll',redrawRulers);}
+new ResizeObserver(redrawRulers).observe(document.documentElement);
+function tick(){var t=new Date(),pad=function(n){return String(n).padStart(2,'0');};document.getElementById('nav-time').textContent=pad(t.getHours())+':'+pad(t.getMinutes())+':'+pad(t.getSeconds());}
+setInterval(tick,1000);tick();
+redrawRulers();
+
+/* ── SPLIT FOOTER TICKER ─────────────────── */
+(function(){
+  var LAST_IMG = '../../LAST.png';
+  var NEXT_IMG = '../../NEXT.png';
+  var HEIGHT   = 650;
+  var SPEED    = 120;
+
+  function buildTicker(trackEl, imgSrc, direction) {
+    var pos  = 0;
+    var last = null;
+    var seed = new Image();
+    seed.src = imgSrc;
+    seed.draggable = false;
+    seed.style.cssText = 'display:block;width:90%;height:auto;padding:40px 0;margin:0 auto;user-select:none;pointer-events:none;opacity:0.92;flex-shrink:0;';
+    trackEl.appendChild(seed);
+    function start() {
+      var seedH = seed.offsetHeight;
+      if (seedH === 0) { setTimeout(start, 50); return; }
+      var needed = Math.ceil((HEIGHT * 3) / seedH) + 3;
+      for (var i = 0; i < needed; i++) {
+        var cl = new Image();
+        cl.src = imgSrc;
+        cl.draggable = false;
+        cl.style.cssText = seed.style.cssText;
+        trackEl.appendChild(cl);
+      }
+      var totalH = (needed + 1) * seedH;
+      pos = (direction === 1) ? -(totalH - HEIGHT) : 0;
+      function loop(ts) {
+        if (last === null) last = ts;
+        var dt = (ts - last) / 1000;
+        last = ts;
+        if (direction === -1) {
+          pos -= SPEED * dt;
+          if (pos <= -totalH) pos += totalH;
+        } else {
+          pos += SPEED * dt;
+          if (pos >= 0) pos -= totalH;
+        }
+        trackEl.style.transform = 'translateY(' + pos + 'px)';
+        requestAnimationFrame(loop);
+      }
+      requestAnimationFrame(loop);
+    }
+    if (seed.complete && seed.naturalHeight > 0) { start(); }
+    else { seed.onload = start; }
+  }
+
+  buildTicker(document.getElementById('vtick-last'), LAST_IMG, -1);
+  buildTicker(document.getElementById('vtick-next'), NEXT_IMG,  1);
+
+  var halves = document.querySelectorAll('.split-half');
+  halves.forEach(function(h) {
+    h.addEventListener('mouseenter', function() { h.classList.add('hovered'); });
+    h.addEventListener('mouseleave', function() { h.classList.remove('hovered'); });
+  });
+})();
+</script>
+</body>
+</html>

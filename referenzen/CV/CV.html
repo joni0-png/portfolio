@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Curriculum Vitae — Jonathan Michael Dawit</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box}
+:root{
+  --bg:#f5f4f0;--fg:#1a1a1a;--mid:#555;--dim:#e0deda;--accent:#1a1a1a;
+  --RH:28px;--RW:28px;--NH:48px;
+  --mono:'Helvetica Neue',Helvetica,Arial,sans-serif;
+}
+html,body{margin:0;padding:0;width:100%;height:100%;overflow:hidden;background:var(--bg);font-family:var(--mono);cursor:none}
+
+#scroll-root{position:fixed;top:0;left:0;right:0;bottom:0;overflow-y:scroll;overflow-x:hidden;padding-top:28px;padding-left:28px}
+#scroll-root::-webkit-scrollbar{width:2px}
+#scroll-root::-webkit-scrollbar-track{background:var(--bg)}
+#scroll-root::-webkit-scrollbar-thumb{background:var(--dim)}
+
+/* NAV */
+nav{position:sticky;top:0;height:var(--NH);z-index:1800;display:flex;justify-content:space-between;align-items:center;padding:0 32px;margin-left:-28px;padding-left:60px;background:rgba(245,244,240,0.95);backdrop-filter:blur(12px)}
+.nav-back{display:flex;align-items:center;gap:20px;text-decoration:none;color:var(--fg);font-size:8px;letter-spacing:.2em;text-transform:uppercase;transition:opacity .2s}
+.nav-back:hover{opacity:.4}
+.nav-title{font-size:8px;letter-spacing:.2em;color:var(--mid);text-transform:uppercase}
+.nav-meta{font-size:8px;color:var(--mid);letter-spacing:.1em}
+
+/* LAYOUT */
+#wrap{min-height:100%;padding:0}
+
+.cv-layout{
+  display:grid;
+  grid-template-columns:280px 1fr 1fr;
+  min-height:calc(100vh - var(--NH));
+}
+
+/* LEFT COLUMN */
+.cv-left{
+  padding:52px 40px 80px 52px;
+  border-right:1px solid var(--dim);
+  position:sticky;
+  top:var(--NH);
+  height:calc(100vh - var(--NH));
+  overflow:hidden;
+}
+
+.cv-photo{
+  width:120px;
+  height:170px;
+  object-fit:cover;
+  object-position:center top;
+  display:block;
+  margin-bottom:32px;
+  filter:grayscale(100%);
+}
+
+.cv-photo-placeholder{
+  width:120px;height:120px;
+  background:var(--dim);
+  margin-bottom:32px;
+  display:flex;align-items:center;justify-content:center;
+}
+.cv-photo-placeholder span{font-size:7px;letter-spacing:.15em;color:#aaa;}
+
+.cv-name{
+  font-size:13px;
+  font-weight:400;
+  letter-spacing:.02em;
+  color:var(--fg);
+  line-height:1.4;
+  margin:0 0 4px;
+}
+.cv-sub{
+  font-size:8px;
+  letter-spacing:.15em;
+  color:#aaa;
+  text-transform:uppercase;
+  margin-bottom:36px;
+  line-height:1.8;
+}
+
+.left-section{margin-bottom:32px;}
+.left-label{
+  font-size:7px;letter-spacing:.25em;color:#aaa;
+  text-transform:uppercase;margin-bottom:10px;
+}
+.left-value{font-size:9px;letter-spacing:.06em;color:var(--mid);line-height:1.9;}
+.left-value a{color:var(--mid);text-decoration:none;}
+.left-value a:hover{color:var(--fg);}
+
+/* MIDDLE COLUMN — CV */
+.cv-right{
+  padding:52px 60px 120px 60px;
+  border-right:1px solid var(--dim);
+}
+
+.cv-section{margin-bottom:56px;}
+.cv-section-title{
+  font-size:7px;letter-spacing:.28em;color:var(--accent);
+  text-transform:uppercase;margin-bottom:20px;
+}
+
+.cv-entry{
+  display:grid;
+  grid-template-columns:120px 1fr;
+  gap:0 24px;
+  margin-bottom:18px;
+  align-items:start;
+}
+.cv-year{
+  font-size:8px;letter-spacing:.1em;color:#aaa;
+  padding-top:2px;line-height:1.8;
+}
+.cv-desc{font-size:10px;letter-spacing:.04em;color:var(--fg);line-height:1.8;}
+.cv-desc-sub{font-size:9px;letter-spacing:.04em;color:var(--mid);line-height:1.7;margin-top:1px;}
+
+.skills-grid{
+  display:grid;
+  grid-template-columns:120px 1fr;
+  gap:12px 24px;
+  align-items:center;
+}
+.skill-cat{font-size:8px;letter-spacing:.15em;color:#aaa;text-transform:uppercase;}
+.skill-items{display:flex;gap:12px;align-items:center;flex-wrap:wrap;}
+.skill-tag{
+  font-size:8px;letter-spacing:.08em;color:var(--mid);
+  border:0px solid var(--dim);padding:3px 10px;
+  transition:border-color .2s,color .2s;
+}
+.skill-tag:hover{border-color:var(--accent);color:var(--fg);}
+.skill-icon{
+  width:28px;height:28px;
+  border:0px solid var(--dim);
+  display:flex;align-items:center;justify-content:center;
+  font-size:6px;letter-spacing:.08em;color:#aaa;text-transform:uppercase;
+  flex-shrink:0;
+}
+.skill-icon img{width:100%;height:100%;object-fit:contain;display:block;}
+
+/* RIGHT COLUMN — Haltung */
+.cv-haltung{
+  padding:52px 60px 120px 60px;
+}
+
+.haltung-title{
+  font-size:7px;letter-spacing:.28em;color:var(--accent);
+  text-transform:uppercase;margin-bottom:32px;
+}
+
+.haltung-text{
+  font-size:10px;line-height:2.1;color:var(--mid);
+  letter-spacing:.04em;max-width:420px;
+}
+.haltung-text p{margin:0 0 1.8em;}
+.haltung-text p:last-child{margin-bottom:0;}
+
+/* RULER */
+#ruler-canvas{position:fixed;top:0;left:0;pointer-events:none;z-index:2000}
+#cx,#cy{position:fixed;pointer-events:none;z-index:9999;background:var(--accent);opacity:.5}
+#cx{height:1px;width:100vw;top:0;left:0}
+#cy{width:1px;height:100vh;left:0;top:0}
+#cdot{position:fixed;width:4px;height:4px;background:var(--accent);border-radius:50%;pointer-events:none;z-index:10000;transform:translate(-50%,-50%)}
+#crx{position:fixed;top:0;width:1px;height:28px;background:var(--accent);opacity:.8;pointer-events:none;z-index:2001}
+#cry{position:fixed;left:0;height:1px;width:28px;background:var(--accent);opacity:.8;pointer-events:none;z-index:2001}
+#coords{position:fixed;bottom:14px;left:38px;font-size:8px;letter-spacing:.12em;color:var(--accent);opacity:.7;z-index:9000;pointer-events:none}
+
+/* LOADER */
+#loader{position:fixed;inset:0;background:var(--bg);z-index:99999;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;transition:opacity .5s,visibility .5s}
+#loader.hidden{opacity:0;visibility:hidden}
+.l-pct{font-size:8px;letter-spacing:.4em;color:var(--accent)}
+.l-track{width:180px;height:1px;background:var(--dim);position:relative}
+.l-fill{position:absolute;left:0;top:0;height:100%;width:0;background:var(--accent);transition:width .08s linear}
+</style>
+</head>
+<body>
+
+<div id="loader">
+  <div class="l-pct" id="lpct">000%</div>
+  <div class="l-track"><div class="l-fill" id="lfill"></div></div>
+</div>
+
+<div id="cx"></div><div id="cy"></div><div id="cdot"></div>
+<div id="crx"></div><div id="cry"></div>
+<div id="coords">X: 0.0 cm / Y: 0.0 cm</div>
+<canvas id="ruler-canvas"></canvas>
+
+<div id="scroll-root">
+<div id="wrap">
+
+  <nav>
+    <a href="../../web.html" class="nav-back">← Back</a>
+    <span class="nav-title">Curriculum Vitae</span>
+    <div class="nav-meta" id="nav-time">00:00:00</div>
+  </nav>
+
+  <div class="cv-layout">
+
+    <!-- LEFT: Foto + Kontakt -->
+    <div class="cv-left">
+      <img class="cv-photo" src="passbildunoffiziel.jpeg" alt="Jonathan Michael Dawit"
+           onerror="this.style.display='none';document.getElementById('photo-ph').style.display='flex'">
+      <div class="cv-photo-placeholder" id="photo-ph" style="display:none"><span>Foto</span></div>
+
+      <div class="cv-name">Jonathan Michael Dawit</div>
+      <div class="cv-sub">
+        5. Semester Architektur B.A.<br>
+        Staatliche Akademie der<br>
+        Bildenden Künste Stuttgart
+      </div>
+
+      <div class="left-section">
+        <div class="left-label">Kontakt</div>
+        <div class="left-value">
+          <a href="mailto:dawit.jonathan@yahoo.com">dawit.jonathan@yahoo.com</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- MIDDLE: CV -->
+    <div class="cv-right">
+
+      <div class="cv-section">
+        <div class="cv-section-title">Bildung</div>
+
+        <div class="cv-entry">
+          <div class="cv-year">2015 – 2022</div>
+          <div>
+            <div class="cv-desc">Karls-Gymnasium, Stuttgart</div>
+            <div class="cv-desc-sub">Allgemeine Hochschulreife &Oslash; 1.4</div>
+          </div>
+        </div>
+
+        <div class="cv-entry">
+          <div class="cv-year">2023 –</div>
+          <div>
+            <div class="cv-desc">Staatliche Akademie der Bildenden Künste, Stuttgart</div>
+            <div class="cv-desc-sub">Aktueller Durchschnitt &Oslash; 1.3</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cv-section">
+        <div class="cv-section-title">Arbeitserfahrung</div>
+
+        <div class="cv-entry">
+          <div class="cv-year">2021 –</div>
+          <div>
+            <div class="cv-desc">Service</div>
+            <div class="cv-desc-sub">Kellner in gehobener Gastronomie</div>
+          </div>
+        </div>
+
+        <div class="cv-entry">
+          <div class="cv-year">2023 (2 Monate)</div>
+          <div>
+            <div class="cv-desc">Schreinerpraktikum</div>
+            <div class="cv-desc-sub">Holzarbeiten und Montagearbeiten</div>
+          </div>
+        </div>
+
+        <div class="cv-entry">
+          <div class="cv-year">2024 (1 Monat)</div>
+          <div>
+            <div class="cv-desc">2. Schreinerpraktikum</div>
+            <div class="cv-desc-sub">Holzarbeiten und Baustellenarbeiten</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cv-section">
+        <div class="cv-section-title">Sprachen</div>
+        <div class="cv-entry">
+          <div class="cv-year"></div>
+          <div class="cv-desc">Deutsch, Englisch, Kenntnisse in Japanisch</div>
+        </div>
+      </div>
+
+      <div class="cv-section">
+        <div class="cv-section-title">Skills</div>
+
+        <div class="skills-grid">
+
+          <div class="skill-cat">3D</div>
+          <div class="skill-items">
+            <div class="skill-icon">
+              <img src="logos/rhino.png" alt="Rhino3D"
+                   onerror="this.parentElement.textContent='Rhino'">
+            </div>
+            <div class="skill-icon">
+              <img src="logos/grasshopperlogo.png" alt="Grasshopper"
+                   onerror="this.parentElement.textContent='GH'">
+            </div>
+          </div>
+
+          <div class="skill-cat">2D</div>
+          <div class="skill-items">
+            <div class="skill-icon">
+              <img src="logos/Vectorworks_logo.svg" alt="Vectorworks"
+                   onerror="this.parentElement.textContent='VW'">
+            </div>
+            <div class="skill-icon">
+              <img src="logos/AutoCad_new_logo.svg" alt="AutoCAD"
+                   onerror="this.parentElement.textContent='CAD'">
+            </div>
+          </div>
+
+          <div class="skill-cat">Rendering</div>
+          <div class="skill-items">
+            <div class="skill-icon">
+              <img src="logos/blender.png" alt="Blender"
+                   onerror="this.parentElement.textContent='Blender'">
+            </div>
+          </div>
+
+          <div class="skill-cat">Visualization</div>
+          <div class="skill-items">
+            <div class="skill-icon">
+              <img src="logos/photoshop.png" alt="Photoshop"
+                   onerror="this.parentElement.textContent='Ps'">
+            </div>
+            <div class="skill-icon">
+              <img src="logos/indesign.png" alt="InDesign"
+                   onerror="this.parentElement.textContent='Id'">
+            </div>
+            <div class="skill-icon">
+              <img src="logos/Illustrator.png" alt="Illustrator"
+                   onerror="this.parentElement.textContent='Ai'">
+            </div>
+          </div>
+
+          <div class="skill-cat">Programmieren</div>
+          <div class="skill-items">
+            <span class="skill-tag">HTML</span>
+            <span class="skill-tag">JavaScript</span>
+            <span class="skill-tag">CSS</span>
+          </div>
+
+        </div>
+      </div>
+
+    </div><!-- cv-right -->
+
+    <!-- RIGHT: Haltung -->
+    <div class="cv-haltung">
+      <div class="haltung-title">Meine Haltung</div>
+      <div class="haltung-text">
+        <p>Meine architektonische Haltung bewegt sich an der Schnittstelle von Gestaltung, Atmosphäre und gesellschaftlicher Verantwortung. Architektur ist für mich nicht nur die Organisation von Raum, sondern auch ein Mittel, um Aussagen zu formulieren und Wahrnehmung zu prägen. Jede räumliche Entscheidung trägt Bedeutung in sich, sei es in der Wahl der Materialien, in der Form eines Baukörpers oder in der Art, wie Licht, Maßstab und Bewegung im Raum erlebt werden.</p>
+        <p>Gleichzeitig sehe ich Architektur immer im Dialog mit ihrem Kontext. Entwürfe entstehen nicht isoliert, sondern reagieren auf das, was ein Ort, eine Umgebung oder eine Gemeinschaft benötigt. Mich interessiert besonders, wie sich durch räumliche Setzungen Atmosphären erzeugen lassen, die über reine Funktion hinausgehen und einen eigenen Wert für die Lebewesen entwickeln, die sie nutzen.</p>
+        <p>Darüber hinaus begreife ich Architektur auch als politisches Feld. Gestaltung ist niemals neutral; Sie trifft Entscheidungen darüber, für wen Räume entstehen, wer sie nutzt und wie sie wahrgenommen werden. Diese Dimension bewusst mitzudenken ist für mich ein zentraler Teil des Entwurfsprozesses.</p>
+        <p>Mit Blick auf die Zukunft beschäftigt mich zudem die Frage nach Anpassungsfähigkeit. Unsere Gesellschaft verändert sich in immer kürzeren Zyklen, und Architektur kann nicht länger als statisches Objekt verstanden werden. Gebäude müssen vielmehr als Systeme gedacht werden, die Transformation zulassen, sich weiterentwickeln und auf neue Anforderungen reagieren können. In diesem Sinne interessiert mich eine Architektur, die sowohl atmosphärisch präzise als auch strukturell offen ist.</p>
+      </div>
+    </div>
+
+  </div><!-- cv-layout -->
+
+</div>
+</div>
+
+<script>
+/* LOADER */
+(function(){
+  var loader=document.getElementById('loader'),fill=document.getElementById('lfill'),lbl=document.getElementById('lpct'),p=0;
+  var iv=setInterval(function(){
+    p=Math.min(p+Math.random()*15,100);var f=Math.floor(p);
+    fill.style.width=f+'%';lbl.textContent=String(f).padStart(3,'0')+'%';
+    if(p>=100){clearInterval(iv);setTimeout(function(){loader.classList.add('hidden');},300);}
+  },55);
+})();
+
+/* CURSOR */
+var $cx=document.getElementById('cx'),$cy=document.getElementById('cy');
+var $dot=document.getElementById('cdot'),$co=document.getElementById('coords');
+var $crx=document.getElementById('crx'),$cry=document.getElementById('cry');
+document.addEventListener('mousemove',function(e){
+  var x=e.clientX,y=e.clientY;
+  $cx.style.top=y+'px';$cy.style.left=x+'px';
+  $dot.style.left=x+'px';$dot.style.top=y+'px';
+  $crx.style.left=x+'px';$cry.style.top=y+'px';
+  var ppc=getPxPerCm();
+  var cx=(x-28+scrollRoot.scrollLeft)/ppc;
+  var cy=(y-28+scrollRoot.scrollTop)/ppc;
+  $co.textContent='X: '+cx.toFixed(1)+' cm  /  Y: '+cy.toFixed(1)+' cm';
+});
+
+/* RULER */
+var RH=28,RW=28;
+var scrollRoot=document.getElementById('scroll-root');
+var cmProbe=document.createElement('div');
+cmProbe.style.cssText='position:fixed;width:1cm;height:1px;visibility:hidden;pointer-events:none;top:0;left:0;';
+document.body.appendChild(cmProbe);
+function getPxPerCm(){return cmProbe.getBoundingClientRect().width;}
+
+function redrawRulers(){
+  var cv=document.getElementById('ruler-canvas');
+  var dpr=window.devicePixelRatio||1,ppc=getPxPerCm();
+  var vv=window.visualViewport,W=vv?vv.width:window.innerWidth,H=vv?vv.height:window.innerHeight;
+  cv.width=Math.round(W*dpr);cv.height=Math.round(H*dpr);
+  cv.style.width=W+'px';cv.style.height=H+'px';
+  var c=cv.getContext('2d');c.scale(dpr,dpr);c.clearRect(0,0,W,H);
+  var scrollX=scrollRoot.scrollLeft/ppc,scrollY=scrollRoot.scrollTop/ppc;
+  c.fillStyle='#f5f4f0';c.fillRect(0,0,RW,RH);
+  c.strokeStyle='#e0deda';c.lineWidth=1;
+  c.beginPath();c.moveTo(RW-.5,0);c.lineTo(RW-.5,RH);c.stroke();
+  c.beginPath();c.moveTo(0,RH-.5);c.lineTo(RW,RH-.5);c.stroke();
+  c.fillStyle='#1a1a1a';c.font='7px "IBM Plex Mono",monospace';
+  c.textAlign='center';c.textBaseline='middle';c.fillText('cm',RW/2,RH/2);
+  c.fillStyle='#f5f4f0';c.fillRect(RW,0,W-RW,RH);
+  c.strokeStyle='#e0deda';c.beginPath();c.moveTo(RW,RH-.5);c.lineTo(W,RH-.5);c.stroke();
+  c.font='7px "IBM Plex Mono",monospace';c.textAlign='left';c.textBaseline='bottom';
+  for(var mm=Math.floor(scrollX*10);;mm++){
+    var x=RW+(mm/10-scrollX)*ppc;if(x>W+1)break;if(x<RW)continue;
+    var isCm=(mm%10===0),is5=(mm%5===0),th=isCm?14:is5?9:5;
+    c.fillStyle=isCm?'#999':'#ccc';c.fillRect(Math.round(x),RH-th,1,th);
+    if(isCm&&x>RW+2){c.fillStyle='#888';c.fillText(Math.round(mm/10)+'',x+2,RH-15);}
+  }
+  c.fillStyle='#f5f4f0';c.fillRect(0,RH,RW,H-RH);
+  c.strokeStyle='#e0deda';c.beginPath();c.moveTo(RW-.5,RH);c.lineTo(RW-.5,H);c.stroke();
+  c.font='7px "IBM Plex Mono",monospace';
+  for(var mm2=Math.floor(scrollY*10);;mm2++){
+    var y=RH+(mm2/10-scrollY)*ppc;if(y>H+1)break;if(y<RH)continue;
+    var isCm2=(mm2%10===0),is52=(mm2%5===0),tw=isCm2?14:is52?9:5;
+    c.fillStyle=isCm2?'#999':'#ccc';c.fillRect(RW-tw,Math.round(y),tw,1);
+    if(isCm2&&y>RH+2){
+      c.save();c.translate(RW-15,y-2);c.rotate(-Math.PI/2);
+      c.fillStyle='#888';c.textAlign='left';c.textBaseline='alphabetic';
+      c.fillText(Math.round(mm2/10)+'',0,0);c.restore();
+    }
+  }
+}
+
+scrollRoot.addEventListener('scroll',redrawRulers,{passive:true});
+window.addEventListener('resize',redrawRulers);
+if(window.visualViewport){window.visualViewport.addEventListener('resize',redrawRulers);window.visualViewport.addEventListener('scroll',redrawRulers);}
+new ResizeObserver(redrawRulers).observe(document.documentElement);
+
+/* CLOCK */
+function tick(){
+  var t=new Date(),pad=function(n){return String(n).padStart(2,'0');};
+  document.getElementById('nav-time').textContent=pad(t.getHours())+':'+pad(t.getMinutes())+':'+pad(t.getSeconds());
+}
+setInterval(tick,1000);tick();
+redrawRulers();
+</script>
+</body>
+</html>
