@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>PORTFOLIO — ARCHITEKTUR</title>
-	<link rel="icon" type="image/png" href="/animationen/animationen1/frame3.png">
+<link rel="icon" type="image/png" href="/animationen/animationen1/frame3.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
@@ -155,7 +155,6 @@ body { background: var(--bg); color: var(--fg); font-family: var(--mono); cursor
 
 <div id="wrap">
   <section id="hero">
-    <!-- klickbare Fläche über der Animation → CV -->
     <a id="hero-link" href="referenzen/CV/cv.html"></a>
     <img id="hero-slide" src="animationen/animationen1/frame1.png" alt="">
     <div id="scramble-header"><div id="stream"></div></div>
@@ -327,7 +326,7 @@ window.addEventListener('scroll',function(){doParallax();redrawRulers();},{passi
 window.addEventListener('resize',function(){doParallax();redrawRulers();initScramble();});
 doParallax();redrawRulers();
 
-/* HERO FRAMES */
+/* HERO FRAMES — alle Bilder vorladen für flüssige Animation */
 (function(){
   var frames=[
     'animationen/animationen1/frame1.png','animationen/animationen1/frame2.png',
@@ -336,8 +335,17 @@ doParallax();redrawRulers();
     'animationen/animationen1/frame7.png'
   ];
   var heroEl=document.getElementById('hero-slide'),cur=0;
-  function next(){heroEl.src=frames[cur];cur=(cur+1)%frames.length;setTimeout(next,200);}
-  next();
+  var imgs=frames.map(function(src){var i=new Image();i.src=src;return i;});
+  var loaded=0;
+  function start(){
+    function next(){heroEl.src=imgs[cur].src;cur=(cur+1)%imgs.length;setTimeout(next,150);}
+    next();
+  }
+  imgs.forEach(function(i){
+    i.onload=function(){loaded++;if(loaded===imgs.length)start();};
+    if(i.complete&&i.naturalWidth>0)loaded++;
+  });
+  if(loaded===imgs.length)start();
 })();
 
 /* DPR WATCH */
