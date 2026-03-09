@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Introvert — Portfolio</title>
-	<link rel="icon" type="image/png" href="/animationen/animationen1/frame3.png">
+<link rel="icon" type="image/png" href="/animationen/animationen1/frame3.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
@@ -15,21 +15,17 @@
   --mono:'Helvetica Neue',Helvetica,Arial,sans-serif;
 }
 html,body{margin:0;padding:0;width:100%;height:100%;overflow:hidden;background:var(--bg);font-family:var(--mono);cursor:none}
-
 #scroll-root{position:fixed;top:0;left:0;right:0;bottom:0;overflow-y:scroll;overflow-x:hidden;padding-top:28px;padding-left:28px}
 #scroll-root::-webkit-scrollbar{width:2px}
 #scroll-root::-webkit-scrollbar-track{background:var(--bg)}
 #scroll-root::-webkit-scrollbar-thumb{background:var(--dim)}
-
 nav{position:sticky;top:0;height:var(--NH);z-index:1800;display:flex;justify-content:space-between;align-items:center;padding:0 32px;margin-left:-28px;padding-left:60px;background:rgba(245,244,240,0.95);backdrop-filter:blur(12px)}
 .nav-back{display:flex;align-items:center;gap:20px;text-decoration:none;color:var(--fg);font-size:8px;letter-spacing:.2em;text-transform:uppercase;transition:opacity .2s}
 .nav-back:hover{opacity:.4}
 .nav-project{font-size:8px;letter-spacing:.2em;color:var(--mid);text-transform:uppercase}
 .nav-nr{opacity:.4;margin-right:10px}
 .nav-meta{font-size:8px;color:var(--mid);letter-spacing:.1em}
-
 #wrap{min-height:100%;padding:0}
-
 .project-layout{display:grid;grid-template-columns:38% 62%;align-items:start}
 .col-text{padding:48px 44px 80px 52px}
 .proj-nr{font-size:7px;letter-spacing:.28em;color:#aaa;margin-bottom:16px;text-transform:uppercase}
@@ -47,93 +43,42 @@ nav{position:sticky;top:0;height:var(--NH);z-index:1800;display:flex;justify-con
 .img-caption{font-size:7px;letter-spacing:.18em;color:#aaa;text-transform:uppercase;padding:10px 0 0}
 .img-row{display:flex;gap:3px;margin-bottom:60px}
 .img-row .img-block{flex:1;margin-bottom:0}
-
-/* ── Custom Video Controls ── */
-.video-block{margin-bottom:60px;position:relative;}
-.video-block video{display:block;width:100%;height:auto;}
-.vid-controls{
-  display:flex;align-items:center;gap:12px;
-  padding:8px 0 0;
-}
-.vid-btn{
-  background:none;border:none;cursor:none;
-  font-family:var(--mono);font-size:7px;letter-spacing:.18em;
-  text-transform:uppercase;color:var(--fg);opacity:.5;
-  padding:0;transition:opacity .2s;flex-shrink:0;
-}
-.vid-btn:hover{opacity:1;}
-.vid-scrubber-wrap{
-  flex:1;position:relative;height:12px;
-  display:flex;align-items:center;cursor:none;
-}
-.vid-scrubber-track{
-  position:absolute;left:0;right:0;height:1px;
-  background:var(--dim);
-}
-.vid-scrubber-fill{
-  position:absolute;left:0;top:0;height:100%;
-  width:0%;background:var(--fg);pointer-events:none;
-}
-.vid-scrubber-thumb{
-  position:absolute;top:50%;
-  width:5px;height:5px;background:var(--fg);border-radius:50%;
-  transform:translate(-50%,-50%);
-  pointer-events:none;transition:transform .1s;
-}
-.vid-scrubber-wrap:hover .vid-scrubber-thumb{transform:translate(-50%,-50%) scale(1.5);}
-.vid-time{
-  font-size:7px;letter-spacing:.12em;color:#aaa;
-  flex-shrink:0;min-width:60px;text-align:right;
-}
-
-.slider-frame{width:100%;position:relative;margin-bottom:0;overflow:hidden;}
-.slider-frame img.active{display:block;width:100%;height:auto;}
-.slider-frame video.slider-vid{display:none;width:100%;height:auto;}
-.slider-mute{position:absolute;bottom:12px;right:12px;background:rgba(245,244,240,0.88);border:1px solid var(--dim);color:var(--fg);font-family:var(--mono);font-size:7px;letter-spacing:.18em;text-transform:uppercase;padding:5px 10px;cursor:none;opacity:0;pointer-events:none;transition:opacity .2s;z-index:5;}
-.slider-mute.show{opacity:.7;pointer-events:all;}
-.slider-mute:hover{opacity:1;}
+/* Video Controls */
+.video-block{margin-bottom:60px;position:relative}
+.video-block video{display:block;width:100%;height:auto}
+.vid-controls{display:flex;align-items:center;gap:12px;padding:8px 0 0}
+.vid-btn{background:none;border:none;cursor:none;font-family:var(--mono);font-size:7px;letter-spacing:.18em;text-transform:uppercase;color:var(--fg);opacity:.5;padding:0;transition:opacity .2s;flex-shrink:0}
+.vid-btn:hover{opacity:1}
+.vid-scrubber-wrap{flex:1;position:relative;height:12px;display:flex;align-items:center;cursor:none}
+.vid-scrubber-track{position:absolute;left:0;right:0;height:1px;background:var(--dim)}
+.vid-scrubber-fill{position:absolute;left:0;top:0;height:100%;width:0%;background:var(--fg);pointer-events:none}
+.vid-scrubber-thumb{position:absolute;top:50%;width:5px;height:5px;background:var(--fg);border-radius:50%;transform:translate(-50%,-50%);pointer-events:none;transition:transform .1s}
+.vid-scrubber-wrap:hover .vid-scrubber-thumb{transform:translate(-50%,-50%) scale(1.5)}
+.vid-time{font-size:7px;letter-spacing:.12em;color:#aaa;flex-shrink:0;min-width:60px;text-align:right}
+/* Slider */
+.slider-frame{width:100%;position:relative;margin-bottom:0;overflow:hidden}
+.slider-frame img.active{display:block;width:100%;height:auto}
+.slider-frame video.slider-vid{display:none;width:100%;height:auto}
+.slider-mute{position:absolute;bottom:12px;right:12px;background:rgba(245,244,240,0.88);border:1px solid var(--dim);color:var(--fg);font-family:var(--mono);font-size:7px;letter-spacing:.18em;text-transform:uppercase;padding:5px 10px;cursor:none;opacity:0;pointer-events:none;transition:opacity .2s;z-index:5}
+.slider-mute.show{opacity:.7;pointer-events:all}
+.slider-mute:hover{opacity:1}
 .slider-nav{display:flex;align-items:center;gap:20px;margin-top:12px}
 .slider-nav button{background:none;border:none;cursor:none;font-size:8px;letter-spacing:.2em;color:var(--fg);opacity:.5;padding:0;font-family:var(--mono);text-transform:uppercase;transition:opacity .2s}
 .slider-nav button:hover{opacity:1}
 .slider-nav span{font-size:7px;letter-spacing:.2em;color:#aaa}
 #slider-text{font-size:11px;line-height:2.1;color:var(--mid);letter-spacing:.04em}
 #slider-text p+p{margin-top:1.4em}
-
-/* ── SPLIT FOOTER ─────────────────────────── */
-.split-footer{
-  display:grid;grid-template-columns:1fr 1fr;
-  height:650px;margin-top:60px;
-  width:calc(100% + 28px);margin-left:-28px;
-  overflow:hidden;
-}
-.split-half{
-  position:relative;background:#1a1a1a;
-  overflow:hidden;cursor:none;text-decoration:none;display:block;
-  pointer-events:all !important;z-index:1;
-}
-.split-half.split-next{border-left:none;}
-.vticker-track{
-  position:absolute;left:0;right:0;
-  display:flex;flex-direction:column;align-items:center;
-  will-change:transform;
-  pointer-events:none !important;
-}
-.vticker-track img{
-  display:block;width:90%;height:auto;
-  padding:40px 0;margin:0 auto;
-  user-select:none;pointer-events:none;opacity:0.92;flex-shrink:0;
-}
-.split-hover-label{
-  position:absolute;bottom:28px;
-  font-size:7px;letter-spacing:.22em;color:rgba(255,255,255,0);
-  text-transform:uppercase;font-family:'IBM Plex Mono',monospace;
-  pointer-events:none;transition:color .25s;white-space:nowrap;
-}
-.split-half.split-last .split-hover-label{left:28px;}
-.split-half.split-next .split-hover-label{right:28px;}
-.split-half.hovered .split-hover-label{color:rgba(255,255,255,0.65);}
-.split-half.hovered .vticker-track img{opacity:1;}
-
+/* Split Footer */
+.split-footer{display:grid;grid-template-columns:1fr 1fr;height:650px;margin-top:60px;width:calc(100% + 28px);margin-left:-28px;overflow:hidden}
+.split-half{position:relative;background:#1a1a1a;overflow:hidden;cursor:none;text-decoration:none;display:block;pointer-events:all !important;z-index:1}
+.vticker-track{position:absolute;left:0;right:0;display:flex;flex-direction:column;align-items:center;will-change:transform;pointer-events:none !important}
+.vticker-track img{display:block;width:90%;height:auto;padding:40px 0;margin:0 auto;user-select:none;pointer-events:none;opacity:0.92;flex-shrink:0}
+.split-hover-label{position:absolute;bottom:28px;font-size:7px;letter-spacing:.22em;color:rgba(255,255,255,0);text-transform:uppercase;font-family:'IBM Plex Mono',monospace;pointer-events:none;transition:color .25s;white-space:nowrap}
+.split-half.split-last .split-hover-label{left:28px}
+.split-half.split-next .split-hover-label{right:28px}
+.split-half.hovered .split-hover-label{color:rgba(255,255,255,0.65)}
+.split-half.hovered .vticker-track img{opacity:1}
+/* Ruler / Cursor */
 #ruler-canvas{position:fixed;top:0;left:0;pointer-events:none;z-index:2000}
 #cx,#cy{position:fixed;pointer-events:none;z-index:9999;background:var(--accent);opacity:.5}
 #cx{height:1px;width:100vw;top:0;left:0}
@@ -155,7 +100,6 @@ nav{position:sticky;top:0;height:var(--NH);z-index:1800;display:flex;justify-con
   <div class="l-pct" id="lpct">000%</div>
   <div class="l-track"><div class="l-fill" id="lfill"></div></div>
 </div>
-
 <div id="cx"></div><div id="cy"></div><div id="cdot"></div>
 <div id="crx"></div><div id="cry"></div>
 <div id="coords">X: 0.0 cm / Y: 0.0 cm</div>
@@ -170,22 +114,22 @@ nav{position:sticky;top:0;height:var(--NH);z-index:1800;display:flex;justify-con
       <div class="nav-meta" id="nav-time">00:00:00</div>
     </nav>
 
-    <!-- BLOCK 1: Intro + Bilder + Video -->
+    <!-- BLOCK 1a: Titel + Rendering -->
     <div class="project-layout">
       <div class="col-text">
-        <div class="proj-nr">04 / 2024</div>
+        <div class="proj-nr">2025-2026</div>
         <h1 class="proj-title">Introvert</h1>
         <div class="meta-table">
           <div class="meta-row"><span class="meta-label">Typologie</span><span class="meta-value">Hotel</span></div>
           <div class="meta-row"><span class="meta-label">Standort</span><span class="meta-value">London, UK</span></div>
           <div class="meta-row"><span class="meta-label">Jahr</span><span class="meta-value">2025-26</span></div>
           <div class="meta-row"><span class="meta-label">Modul</span><span class="meta-value">Entwerfen</span></div>
-          <div class="meta-row"><span class="meta-label">Professur</span><span class="meta-value">Prof.in Marianne Müller AA., <br>Dana Andronescu M.Sc.</span></div>
+          <div class="meta-row"><span class="meta-label">Professur</span><span class="meta-value">Prof.in Marianne M&uuml;ller AA.,<br>Dana Andronescu M.Sc.</span></div>
         </div>
         <div class="proj-text">
-          <p>Das "Introvert" untersucht das Potenzial von Dunkelheit als architektonisches Entwurfsprinzip im Kontext einer hochgradig überstimulierenden urbanen Umgebung. Ausgangspunkt ist ein bestehendes Parkhaus auf einer Verkehrsinsel in Shoreditch, London, einem Ort, der durch Sichtbarkeit, Aktivierung und permanente Reizdichte geprägt ist.</p>
-          <p>Während das Umfeld durch Helligkeit, Bewegung und öffentliche Präsenz bestimmt wird, entwickelt der Entwurf eine bewusste Gegenposition: die Transformation des Bestands in ein introvertiertes Hotel, das sich nicht über maximale Offenheit, sondern über kontrollierte Filterung und räumliche Reduktion definiert.</p>
-          <p>Im Zentrum der Arbeit steht die Frage, wie Licht nicht als dominantes Element, sondern als gefiltertes, gerichtetes und atmosphärisches Medium eingesetzt werden kann. Durch gezielte Subtraktion im Bestand entsteht ein vertikaler Lichtraum, der Tiefe, Ruhe und zeitliche Veränderung erfahrbar macht.</p>
+          <p>Das &ldquo;Introvert&rdquo; untersucht das Potenzial von Dunkelheit als architektonisches Entwurfsprinzip im Kontext einer hochgradig &uuml;berstimulierenden urbanen Umgebung. Ausgangspunkt ist ein bestehendes Parkhaus auf einer Verkehrsinsel in Shoreditch, London, einem Ort, der durch Sichtbarkeit, Aktivierung und permanente Reizdichte gepr&auml;gt ist.</p>
+          <p>W&auml;hrend das Umfeld durch Helligkeit, Bewegung und &ouml;ffentliche Pr&auml;senz bestimmt wird, entwickelt der Entwurf eine bewusste Gegenposition: die Transformation des Bestands in ein introvertiertes Hotel, das sich nicht &uuml;ber maximale Offenheit, sondern &uuml;ber kontrollierte Filterung und r&auml;umliche Reduktion definiert.</p>
+          <p>Im Zentrum der Arbeit steht die Frage, wie Licht nicht als dominantes Element, sondern als gefiltertes, gerichtetes und atmosph&auml;risches Medium eingesetzt werden kann. Durch gezielte Subtraktion im Bestand entsteht ein vertikaler Lichtraum, der Tiefe, Ruhe und zeitliche Ver&auml;nderung erfahrbar macht.</p>
         </div>
       </div>
       <div class="col-images">
@@ -193,16 +137,34 @@ nav{position:sticky;top:0;height:var(--NH);z-index:1800;display:flex;justify-con
           <img src="../../introvert/renderaußen.png" alt="Renderaußen">
           <div class="img-caption">Rendering</div>
         </div>
+      </div>
+    </div>
+
+    <!-- BLOCK 1b: Bestandstext + zwei Fotos -->
+    <div class="project-layout" style="padding-top:0">
+      <div class="col-text" style="padding-top:0">
+        <div class="proj-text">
+          <p>Das bestehende Parkhaus in Shoreditch bildet den Ausgangspunkt des Entwurfs. Der Bau ist gepr&auml;gt von einer rauen, offenen Struktur aus Beton und einer Fassade, die heute weitgehend von Graffitis und spontanen k&uuml;nstlerischen Eingriffen &uuml;berzogen ist. Diese informelle Aneignung spiegelt den kulturellen Charakter des Viertels wider, das f&uuml;r seine urbane Kunst- und Subkultur bekannt ist. In diesem Spannungsfeld zwischen funktionaler Infrastruktur und kultureller Ausdrucksfl&auml;che wird das Parkhaus zum Subjekt der Transformation. Der Entwurf versteht den Bestand nicht als zu ersetzende Struktur, sondern als r&auml;umliches Ger&uuml;st, das durch gezielte Eingriffe neu interpretiert und in eine andere architektonische und atmosph&auml;rische Nutzung &uuml;berf&uuml;hrt wird.</p>
+        </div>
+      </div>
+      <div class="col-images" style="padding-top:0">
         <div class="img-row">
-          <div class="img-block scaled">
-            <img src="../../introvert/DSCF3317.jpeg" alt="Bestandsaufnahme" style="width:12.6cm">
+          <div class="img-block scaled" style="margin-bottom:0">
+            <img src="../../introvert/DSCF3317.jpeg" alt="Bestandsaufnahme Straße">
             <div class="img-caption">Bestandsaufnahme_Straße</div>
           </div>
-          <div class="img-block scaled">
-            <img src="../../introvert/IMG_0875.jpeg" alt="Bestandsaufnahme" style="width:12.6cm">
+          <div class="img-block scaled" style="margin-bottom:0">
+            <img src="../../introvert/IMG_0875.jpeg" alt="Bestandsaufnahme Autoaufzug">
             <div class="img-caption">Bestandsaufnahme_Autoaufzug</div>
           </div>
         </div>
+      </div>
+    </div>
+
+    <!-- BLOCK 1c: Video -->
+    <div class="project-layout" style="padding-top:0">
+      <div class="col-text" style="padding-top:0;padding-bottom:0"></div>
+      <div class="col-images" style="padding-top:0">
         <div class="video-block">
           <video id="vid-standalone" autoplay muted loop playsinline>
             <source src="../../introvert/Timeline1.mp4" type="video/mp4">
@@ -227,7 +189,7 @@ nav{position:sticky;top:0;height:var(--NH);z-index:1800;display:flex;justify-con
     <div class="project-layout">
       <div class="col-text">
         <div class="meta-label" style="margin-bottom:8px">Schnitt</div>
-        <p class="proj-text">Durch die Subtraktion eines konischen Volumens aus den bestehenden Geschossebenen entsteht im Zentrum des Gebäudes ein großzügiger, mehrgeschossiger Luftraum, der den Lobbybereich räumlich prägt und dem Inneren eine klare vertikale Orientierung verleiht. Die konische Form verstärkt die räumliche Tiefe und bündelt die Wahrnehmung des Raumes über mehrere Ebenen hinweg. Entlang der oberen Geschosse führen schmale Gehstege zu den Hotelzimmern und begleiten den Luftraum als umlaufende Erschließung. Von diesen Wegen aus eröffnen sich gezielte Blickbeziehungen in den darunterliegenden Raum, wodurch die vertikale Dimension des Gebäudes auch aus der Bewegung heraus erfahrbar wird und eine besondere räumliche Spannung zwischen Nähe, Distanz und Perspektive entsteht.</p>
+        <p class="proj-text">Durch die Subtraktion eines konischen Volumens aus den bestehenden Geschossebenen entsteht im Zentrum des Geb&auml;udes ein gro&szlig;z&uuml;giger, mehrgeschossiger Luftraum, der den Lobbybereich r&auml;umlich pr&auml;gt und dem Inneren eine klare vertikale Orientierung verleiht. Die konische Form verst&auml;rkt die r&auml;umliche Tiefe und b&uuml;ndelt die Wahrnehmung des Raumes &uuml;ber mehrere Ebenen hinweg. Entlang der oberen Geschosse f&uuml;hren schmale Gehstege zu den Hotelzimmern und begleiten den Luftraum als umlaufende Erschlie&szlig;ung. Von diesen Wegen aus er&ouml;ffnen sich gezielte Blickbeziehungen in den darunterliegenden Raum, wodurch die vertikale Dimension des Geb&auml;udes auch aus der Bewegung heraus erfahrbar wird und eine besondere r&auml;umliche Spannung zwischen N&auml;he, Distanz und Perspektive entsteht.</p>
       </div>
       <div class="col-images">
         <div class="img-block">
@@ -241,12 +203,12 @@ nav{position:sticky;top:0;height:var(--NH);z-index:1800;display:flex;justify-con
     <div class="project-layout">
       <div class="col-text">
         <div class="meta-label" style="margin-bottom:8px">Schatten</div>
-        <p class="proj-text">Der Entwurf reagiert auf die dichte und vielfältige Struktur von Shoreditch, einem Stadtteil, der von kreativer Nutzung, urbaner Verdichtung und einer lebendigen Straßenkultur geprägt ist. Innerhalb dieses dynamischen Umfelds setzt das Projekt bewusst einen ruhigeren, introvertierten Gegenpol. Während die äußere Erscheinung zurückhaltend auf die bestehende Bebauung reagiert, entfaltet sich das räumliche Konzept vor allem im Inneren. So entsteht ein Rückzugsort innerhalb des urbanen Gefüges, der sich in die Struktur des Viertels einfügt und zugleich Raum für Konzentration und Abschirmung vom intensiven Stadtleben schafft.</p>
+        <p class="proj-text">Der Entwurf reagiert auf die dichte und vielf&auml;ltige Struktur von Shoreditch, einem Stadtteil, der von kreativer Nutzung, urbaner Verdichtung und einer lebendigen Stra&szlig;enkultur gepr&auml;gt ist. Innerhalb dieses dynamischen Umfelds setzt das Projekt bewusst einen ruhigeren, introvertierten Gegenpol. W&auml;hrend die &auml;u&szlig;ere Erscheinung zur&uuml;ckhaltend auf die bestehende Bebauung reagiert, entfaltet sich das r&auml;umliche Konzept vor allem im Inneren. So entsteht ein R&uuml;ckzugsort innerhalb des urbanen Gef&uuml;ges, der sich in die Struktur des Viertels einf&uuml;gt und zugleich Raum f&uuml;r Konzentration und Abschirmung vom intensiven Stadtleben schafft.</p>
       </div>
       <div class="col-images">
         <div class="img-block">
           <img src="../../introvert/schatten.png" alt="Schatten">
-          <div class="img-caption">Stadtgefüge</div>
+          <div class="img-caption">Stadtgef&uuml;ge</div>
         </div>
       </div>
     </div>
@@ -275,11 +237,11 @@ nav{position:sticky;top:0;height:var(--NH);z-index:1800;display:flex;justify-con
     <div class="split-footer">
       <a href="../Single_Span_Beam/index.html" class="split-half split-last">
         <div class="vticker-track" id="vtick-last"></div>
-        <div class="split-hover-label">← Single_span_beam</div>
+        <div class="split-hover-label">&larr; Single_span_beam</div>
       </a>
       <a href="../Tiny_House/index.html" class="split-half split-next">
         <div class="vticker-track" id="vtick-next"></div>
-        <div class="split-hover-label">Tiny_House →</div>
+        <div class="split-hover-label">Tiny_House &rarr;</div>
       </a>
     </div>
 
@@ -297,106 +259,63 @@ nav{position:sticky;top:0;height:var(--NH);z-index:1800;display:flex;justify-con
   },55);
 })();
 
-/* ── VIDEO CONTROLS ── */
+/* VIDEO CONTROLS */
 (function(){
-  var vid    = document.getElementById('vid-standalone');
-  var btnPP  = document.getElementById('btn-playpause');
-  var btnM   = document.getElementById('btn-standalone');
-  var wrap   = document.getElementById('scrubber-wrap');
-  var fill   = document.getElementById('scrubber-fill');
-  var thumb  = document.getElementById('scrubber-thumb');
-  var timeEl = document.getElementById('vid-time-display');
-  var dragging = false;
-
-  function fmt(s){
-    s = Math.floor(s || 0);
-    return Math.floor(s / 60) + ':' + (s % 60 < 10 ? '0' : '') + (s % 60);
-  }
-  function setProgress(pct){
-    fill.style.width = pct + '%';
-    thumb.style.left = pct + '%';
-  }
-  function updateTime(){
-    var dur = vid.duration || 0;
-    var cur = vid.currentTime || 0;
-    var pct = dur ? (cur / dur) * 100 : 0;
-    setProgress(pct);
-    timeEl.textContent = fmt(cur) + ' / ' + fmt(dur);
-  }
-
-  vid.addEventListener('timeupdate', updateTime);
-  vid.addEventListener('loadedmetadata', updateTime);
-
-  btnPP.addEventListener('click', function(){
-    if(vid.paused){ vid.play(); btnPP.textContent = 'Pause'; }
-    else { vid.pause(); btnPP.textContent = 'Play'; }
-  });
-  vid.addEventListener('play',  function(){ btnPP.textContent = 'Pause'; });
-  vid.addEventListener('pause', function(){ btnPP.textContent = 'Play'; });
-
-  btnM.addEventListener('click', function(){
-    vid.muted = !vid.muted;
-    btnM.textContent = vid.muted ? 'Ton ein' : 'Ton aus';
-  });
-
-  function seekFromEvent(e){
-    var rect = wrap.getBoundingClientRect();
-    var pct  = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
-    vid.currentTime = pct * (vid.duration || 0);
-    setProgress(pct * 100);
-  }
-  wrap.addEventListener('mousedown', function(e){ dragging = true; seekFromEvent(e); });
-  document.addEventListener('mousemove', function(e){ if(dragging) seekFromEvent(e); });
-  document.addEventListener('mouseup', function(){ dragging = false; });
+  var vid=document.getElementById('vid-standalone');
+  var btnPP=document.getElementById('btn-playpause');
+  var btnM=document.getElementById('btn-standalone');
+  var wrap=document.getElementById('scrubber-wrap');
+  var fill=document.getElementById('scrubber-fill');
+  var thumb=document.getElementById('scrubber-thumb');
+  var timeEl=document.getElementById('vid-time-display');
+  var dragging=false;
+  function fmt(s){s=Math.floor(s||0);return Math.floor(s/60)+':'+(s%60<10?'0':'')+(s%60);}
+  function setProgress(pct){fill.style.width=pct+'%';thumb.style.left=pct+'%';}
+  function updateTime(){var dur=vid.duration||0,cur=vid.currentTime||0;setProgress(dur?(cur/dur)*100:0);timeEl.textContent=fmt(cur)+' / '+fmt(dur);}
+  vid.addEventListener('timeupdate',updateTime);
+  vid.addEventListener('loadedmetadata',updateTime);
+  btnPP.addEventListener('click',function(){if(vid.paused){vid.play();btnPP.textContent='Pause';}else{vid.pause();btnPP.textContent='Play';}});
+  vid.addEventListener('play',function(){btnPP.textContent='Pause';});
+  vid.addEventListener('pause',function(){btnPP.textContent='Play';});
+  btnM.addEventListener('click',function(){vid.muted=!vid.muted;btnM.textContent=vid.muted?'Ton ein':'Ton aus';});
+  function seekFromEvent(e){var rect=wrap.getBoundingClientRect(),pct=Math.max(0,Math.min(1,(e.clientX-rect.left)/rect.width));vid.currentTime=pct*(vid.duration||0);setProgress(pct*100);}
+  wrap.addEventListener('mousedown',function(e){dragging=true;seekFromEvent(e);});
+  document.addEventListener('mousemove',function(e){if(dragging)seekFromEvent(e);});
+  document.addEventListener('mouseup',function(){dragging=false;});
 })();
 
 /* SLIDER */
-var slides = [
-  {img:'../../introvert/komorebi03.jpg',   caption:'Schattenstudie',  text:'<p>Die Basis für die Gestaltung war die Untersuchung eines Lichtphänomens. Das Lichtphänomen der „Komorebi" beschreibt das Spiel von Sonnenlicht, das durch die Blätter von Bäumen fällt und dabei ein wechselndes Muster aus Licht und Schatten erzeugt. Dieses natürliche Zusammenspiel von Transparenz, Bewegung und Atmosphäre diente als Ausgangspunkt für die räumliche Gestaltung. Ziel war es, eine Architektur zu entwickeln, die nicht nur Raum definiert, sondern auch das wechselnde Licht erlebbar macht. Durch Öffnungen, Überlagerungen und unterschiedliche Dichten der Struktur entsteht eine Situation, in der Licht gefiltert, gebrochen und im Laufe des Tages immer wieder neu wahrgenommen wird. Auf diese Weise wird das Phänomen des Filters zu einem zentralen gestalterischen Prinzip, das Atmosphäre, Bewegung und Wahrnehmung im Raum prägt.</p>'},
-  {img:'../../introvert/egsvg.svg',        caption:'Grundriss_EG',    text:'<p>Die hohe Aktivierung des Erdgeschosses in Shoreditch wird in diesem Entwurf aufgegriffen. Eine Gallerie im vorderen Teil des Gebäudes und ein introvertierter Ein- und Ausgang im hinteren Bereich für die Hotelgäste.</p>'},
-  {img:'../../introvert/Lobbysvg.svg',     caption:'Grundriss_Lobby', text:'<p>Die Lobby wird über den Aufzug erreicht und widmet sich der großen räumlichen Geste des Voids. Stille und Isolation sorgen für ein einzigartiges Raumgefühl. Es wird Raum für Dunkelheit geschaffen.</p>'},
-  {img:'../../introvert/svg3.OG.svg',      caption:'Grundriss 3. OG', text:'<p>Die Musterzimmer.</p>'},
-  {img:'../../introvert/fisheye.png',      caption:'Innenraum',       text:'<p>Frühe Darstellung des Filterprinzips durch die Glasbausteine. Die Shillouetten der sich in den höheren Stockwerken befindenden Menschen, kann durch die Stege abgelesen werden. Es entstehen interessante und neue Blickbeziehungen.</p>'},
-  {img:'../../introvert/schacht2.jpeg',  caption:'Innenraum',       text:'<p>Im Sommer kann 6 Stunden lang der ein Lichtstrahl beobachtet werden der sich durch das Gebäude navigiert. Dieser Moment kann aus der Lobby aus beobachtet werden und lässt ein wenig von draußen in die introvertierte Welt des Gebäudes.</p>'},
-	{img:'../../introvert/MOMENTRENDER1.png',  caption:'Innenraum',       text:'<p>Im Sommer kann 6 Stunden lang der ein Lichtstrahl beobachtet werden der sich durch das Gebäude navigiert. Dieser Moment kann aus der Lobby aus beobachtet werden und lässt ein wenig von draußen in die introvertierte Welt des Gebäudes.</p>'},
+var slides=[
+  {img:'../../introvert/komorebi03.jpg',caption:'Schattenstudie',text:'<p>Die Basis f&uuml;r die Gestaltung war die Untersuchung eines Lichtph&auml;nomens. Das Lichtph&auml;nomen der &bdquo;Komorebi&ldquo; beschreibt das Spiel von Sonnenlicht, das durch die Bl&auml;tter von B&auml;umen f&auml;llt und dabei ein wechselndes Muster aus Licht und Schatten erzeugt. Dieses nat&uuml;rliche Zusammenspiel von Transparenz, Bewegung und Atmosph&auml;re diente als Ausgangspunkt f&uuml;r die r&auml;umliche Gestaltung. Ziel war es, eine Architektur zu entwickeln, die nicht nur Raum definiert, sondern auch das wechselnde Licht erlebbar macht. Durch &Ouml;ffnungen, &Uuml;berlagerungen und unterschiedliche Dichten der Struktur entsteht eine Situation, in der Licht gefiltert, gebrochen und im Laufe des Tages immer wieder neu wahrgenommen wird. Auf diese Weise wird das Ph&auml;nomen des Filters zu einem zentralen gestalterischen Prinzip, das Atmosph&auml;re, Bewegung und Wahrnehmung im Raum pr&auml;gt.</p>'},
+   {img:'../../introvert/fisheye.png',caption:'Innenraum',text:'<p>Fr&uuml;he Darstellung des Filterprinzips durch die Glasbausteine. Die Shillouetten der sich in den h&ouml;heren Stockwerken befindenden Menschen, kann durch die Stege abgelesen werden. Es entstehen interessante und neue Blickbeziehungen.</p>'},
+	{img:'../../introvert/egsvg.svg',caption:'Grundriss_EG',text:'<p>Die hohe Aktivierung des Erdgeschosses in Shoreditch wird in diesem Entwurf aufgegriffen. Eine Gallerie im vorderen Teil des Geb&auml;udes und ein introvertierter Ein- und Ausgang im hinteren Bereich f&uuml;r die Hotelg&auml;ste.</p>'},
+  {img:'../../introvert/Lobbysvg.svg',caption:'Grundriss_Lobby',text:'<p>Die Lobby wird &uuml;ber den Aufzug erreicht und widmet sich der gro&szlig;en r&auml;umlichen Geste des Voids. Stille und Isolation sorgen f&uuml;r ein einzigartiges Raumgef&uuml;hl. Es wird Raum f&uuml;r Dunkelheit geschaffen.</p>'},
+  {img:'../../introvert/svg3.OG.svg',caption:'Grundriss 3. OG',text:'<p>Die Organisation der Zimmer reagiert auf die räumliche Geometrie des Gebäudes. In den unteren Geschossen sind die Zimmer kompakter ausgebildet, während sie mit zunehmender Höhe größer werden. Durch den konischen Einschnitt im Baukörper entsteht in den oberen Ebenen eine größere Raumtiefe, die großzügigere Grundrisse ermöglicht. Diese zusätzliche Fläche wird für Mehrbettzimmer genutzt, wodurch sich eine differenzierte Zimmerstruktur entwickelt, die aus der räumlichen Logik des Einschnitts hervorgeht.</p>'},
+  {img:'../../introvert/schacht2.jpeg',caption:'Innenraum',text:'<p>Im Sommer kann 6 Stunden lang ein Lichtstrahl beobachtet werden, der sich durch das Geb&auml;ude navigiert. Dieser Moment kann aus der Lobby beobachtet werden und l&auml;sst ein wenig von drau&szlig;en in die introvertierte Welt des Geb&auml;udes.</p>'},
+  {img:'../../introvert/MOMENTRENDER1.png',caption:'Innenraum',text:'<p>Im Sommer kann 6 Stunden lang ein Lichtstrahl beobachtet werden, der sich durch das Geb&auml;ude navigiert. Dieser Moment kann aus der Lobby beobachtet werden und l&auml;sst ein wenig von drau&szlig;en in die introvertierte Welt des Geb&auml;udes.</p>'},
 ];
-
-var current = 0;
-var sliderVid  = document.getElementById('slider-vid');
-var sliderImg  = document.getElementById('slider-img');
-var sliderMute = document.getElementById('slider-mute-btn');
-
-sliderMute.addEventListener('click', function(){
-  sliderVid.muted = !sliderVid.muted;
-  this.textContent = sliderVid.muted ? 'Ton ein' : 'Ton aus';
-});
-
+var current=0;
+var sliderVid=document.getElementById('slider-vid');
+var sliderImg=document.getElementById('slider-img');
+var sliderMute=document.getElementById('slider-mute-btn');
+sliderMute.addEventListener('click',function(){sliderVid.muted=!sliderVid.muted;this.textContent=sliderVid.muted?'Ton ein':'Ton aus';});
 function showSlide(i){
-  current = (i + slides.length) % slides.length;
-  var s = slides[current];
-  if(s.type === 'video'){
-    sliderImg.style.display = 'none';
-    sliderVid.style.display = 'block';
-    sliderVid.src = s.img;
-    sliderVid.muted = true;
-    sliderVid.load();
-    sliderVid.play();
-    sliderMute.textContent = 'Ton ein';
-    sliderMute.classList.add('show');
+  current=(i+slides.length)%slides.length;var s=slides[current];
+  if(s.type==='video'){
+    sliderImg.style.display='none';sliderVid.style.display='block';
+    sliderVid.src=s.img;sliderVid.muted=true;sliderVid.load();sliderVid.play();
+    sliderMute.textContent='Ton ein';sliderMute.classList.add('show');
   } else {
-    sliderVid.style.display = 'none';
-    sliderVid.pause();
-    sliderVid.src = '';
-    sliderImg.style.display = 'block';
-    sliderImg.src = s.img;
+    sliderVid.style.display='none';sliderVid.pause();sliderVid.src='';
+    sliderImg.style.display='block';sliderImg.src=s.img;
     sliderMute.classList.remove('show');
   }
-  document.getElementById('slider-caption').textContent = s.caption;
-  document.getElementById('slider-text').innerHTML      = s.text;
-  document.getElementById('slider-nr').textContent      = (current+1) + ' / ' + slides.length;
+  document.getElementById('slider-caption').textContent=s.caption;
+  document.getElementById('slider-text').innerHTML=s.text;
+  document.getElementById('slider-nr').textContent=(current+1)+' / '+slides.length;
 }
-document.getElementById('prev').addEventListener('click', function(){ showSlide(current-1); });
-document.getElementById('next').addEventListener('click', function(){ showSlide(current+1); });
+document.getElementById('prev').addEventListener('click',function(){showSlide(current-1);});
+document.getElementById('next').addEventListener('click',function(){showSlide(current+1);});
 showSlide(0);
 
 /* LINEALE */
@@ -446,61 +365,37 @@ function tick(){var t=new Date(),pad=function(n){return String(n).padStart(2,'0'
 setInterval(tick,1000);tick();
 redrawRulers();
 
-/* ── SPLIT FOOTER TICKER ─────────────────── */
+/* SPLIT FOOTER TICKER */
 (function(){
-  var LAST_IMG = '../../Last.png';
-  var NEXT_IMG = '../../Next.png';
-  var HEIGHT   = 650;
-  var SPEED    = 120;
-
-  function buildTicker(trackEl, imgSrc, direction) {
-    var pos  = 0;
-    var last = null;
-    var seed = new Image();
-    seed.src = imgSrc;
-    seed.draggable = false;
-    seed.style.cssText = 'display:block;width:90%;height:auto;padding:40px 0;margin:0 auto;user-select:none;pointer-events:none;opacity:0.92;flex-shrink:0;';
+  var LAST_IMG='../../Last.png',NEXT_IMG='../../Next.png',HEIGHT=650,SPEED=120;
+  function buildTicker(trackEl,imgSrc,direction){
+    var pos=0,last=null;
+    var seed=new Image();seed.src=imgSrc;seed.draggable=false;
+    seed.style.cssText='display:block;width:90%;height:auto;padding:40px 0;margin:0 auto;user-select:none;pointer-events:none;opacity:0.92;flex-shrink:0;';
     trackEl.appendChild(seed);
-    function start() {
-      var seedH = seed.offsetHeight;
-      if (seedH === 0) { setTimeout(start, 50); return; }
-      var needed = Math.ceil((HEIGHT * 3) / seedH) + 3;
-      for (var i = 0; i < needed; i++) {
-        var cl = new Image();
-        cl.src = imgSrc;
-        cl.draggable = false;
-        cl.style.cssText = seed.style.cssText;
-        trackEl.appendChild(cl);
-      }
-      var totalH = (needed + 1) * seedH;
-      pos = (direction === 1) ? -(totalH - HEIGHT) : 0;
-      function loop(ts) {
-        if (last === null) last = ts;
-        var dt = (ts - last) / 1000;
-        last = ts;
-        if (direction === -1) {
-          pos -= SPEED * dt;
-          if (pos <= -totalH) pos += totalH;
-        } else {
-          pos += SPEED * dt;
-          if (pos >= 0) pos -= totalH;
-        }
-        trackEl.style.transform = 'translateY(' + pos + 'px)';
+    function start(){
+      var seedH=seed.offsetHeight;
+      if(seedH===0){setTimeout(start,50);return;}
+      var needed=Math.ceil((HEIGHT*3)/seedH)+3;
+      for(var i=0;i<needed;i++){var cl=new Image();cl.src=imgSrc;cl.draggable=false;cl.style.cssText=seed.style.cssText;trackEl.appendChild(cl);}
+      var totalH=(needed+1)*seedH;
+      pos=(direction===1)?-(totalH-HEIGHT):0;
+      function loop(ts){
+        if(last===null)last=ts;var dt=(ts-last)/1000;last=ts;
+        if(direction===-1){pos-=SPEED*dt;if(pos<=-totalH)pos+=totalH;}
+        else{pos+=SPEED*dt;if(pos>=0)pos-=totalH;}
+        trackEl.style.transform='translateY('+pos+'px)';
         requestAnimationFrame(loop);
       }
       requestAnimationFrame(loop);
     }
-    if (seed.complete && seed.naturalHeight > 0) { start(); }
-    else { seed.onload = start; }
+    if(seed.complete&&seed.naturalHeight>0){start();}else{seed.onload=start;}
   }
-
-  buildTicker(document.getElementById('vtick-last'), LAST_IMG, -1);
-  buildTicker(document.getElementById('vtick-next'), NEXT_IMG,  1);
-
-  var halves = document.querySelectorAll('.split-half');
-  halves.forEach(function(h) {
-    h.addEventListener('mouseenter', function() { h.classList.add('hovered'); });
-    h.addEventListener('mouseleave', function() { h.classList.remove('hovered'); });
+  buildTicker(document.getElementById('vtick-last'),LAST_IMG,-1);
+  buildTicker(document.getElementById('vtick-next'),NEXT_IMG,1);
+  document.querySelectorAll('.split-half').forEach(function(h){
+    h.addEventListener('mouseenter',function(){h.classList.add('hovered');});
+    h.addEventListener('mouseleave',function(){h.classList.remove('hovered');});
   });
 })();
 </script>

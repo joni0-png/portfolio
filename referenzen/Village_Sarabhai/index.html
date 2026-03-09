@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Village_Sarabhai — Portfolio</title>
-	<link rel="icon" type="image/png" href="/animationen/animationen1/frame3.png">
+<link rel="icon" type="image/png" href="/animationen/animationen1/frame3.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
@@ -19,7 +19,6 @@ html,body{margin:0;padding:0;width:100%;height:100%;overflow:hidden;background:v
 #scroll-root::-webkit-scrollbar{width:2px}
 #scroll-root::-webkit-scrollbar-track{background:var(--bg)}
 #scroll-root::-webkit-scrollbar-thumb{background:var(--dim)}
-
 nav{position:sticky;top:0;height:var(--NH);z-index:1800;display:flex;justify-content:space-between;align-items:center;padding:0 32px;margin-left:-28px;padding-left:60px;background:rgba(245,244,240,0.95);backdrop-filter:blur(12px)}
 .nav-back{display:flex;align-items:center;gap:20px;text-decoration:none;color:var(--fg);font-size:8px;letter-spacing:.2em;text-transform:uppercase;transition:opacity .2s}
 .nav-back:hover{opacity:.4}
@@ -27,7 +26,6 @@ nav{position:sticky;top:0;height:var(--NH);z-index:1800;display:flex;justify-con
 .nav-nr{opacity:.4;margin-right:10px}
 .nav-meta{font-size:8px;color:var(--mid);letter-spacing:.1em}
 #wrap{min-height:100%;padding:0}
-
 .project-layout{display:grid;grid-template-columns:38% 62%;align-items:start}
 .col-text{padding:48px 44px 80px 52px}
 .proj-nr{font-size:7px;letter-spacing:.28em;color:#aaa;margin-bottom:16px;text-transform:uppercase}
@@ -44,94 +42,42 @@ nav{position:sticky;top:0;height:var(--NH);z-index:1800;display:flex;justify-con
 .img-caption{font-size:7px;letter-spacing:.18em;color:#aaa;text-transform:uppercase;padding:10px 0 0}
 .img-row{display:flex;gap:3px;margin-bottom:60px}
 .img-row .img-block{flex:1;margin-bottom:0}
-
-/* ── Custom Video Controls ── */
-.video-block{margin-bottom:60px;position:relative;}
-.video-block video{display:block;width:100%;height:auto;}
-.vid-controls{
-  display:flex;align-items:center;gap:12px;
-  padding:8px 0 0;
-}
-.vid-btn{
-  background:none;border:none;cursor:none;
-  font-family:var(--mono);font-size:7px;letter-spacing:.18em;
-  text-transform:uppercase;color:var(--fg);opacity:.5;
-  padding:0;transition:opacity .2s;flex-shrink:0;
-}
-.vid-btn:hover{opacity:1;}
-.vid-scrubber-wrap{
-  flex:1;position:relative;height:12px;
-  display:flex;align-items:center;cursor:none;
-}
-.vid-scrubber-track{
-  position:absolute;left:0;right:0;height:1px;
-  background:var(--dim);
-}
-.vid-scrubber-fill{
-  position:absolute;left:0;top:0;height:100%;
-  width:0%;background:var(--fg);pointer-events:none;
-}
-.vid-scrubber-thumb{
-  position:absolute;top:50%;
-  width:5px;height:5px;background:var(--fg);border-radius:50%;
-  transform:translate(-50%,-50%);
-  pointer-events:none;transition:transform .1s;
-}
-.vid-scrubber-wrap:hover .vid-scrubber-thumb{transform:translate(-50%,-50%) scale(1.5);}
-.vid-time{
-  font-size:7px;letter-spacing:.12em;color:#aaa;
-  flex-shrink:0;min-width:60px;text-align:right;
-}
-
-/* SLIDER */
-.slider-frame{width:100%;position:relative;margin-bottom:0;overflow:hidden;}
-.slider-frame img.active{display:block;width:100%;height:auto;}
-.slider-frame video.slider-vid{display:none;width:100%;height:auto;}
-.slider-mute{position:absolute;bottom:12px;right:12px;background:rgba(245,244,240,0.88);border:1px solid var(--dim);color:var(--fg);font-family:var(--mono);font-size:7px;letter-spacing:.18em;text-transform:uppercase;padding:5px 10px;cursor:none;opacity:0;pointer-events:none;transition:opacity .2s;z-index:5;}
-.slider-mute.show{opacity:.7;pointer-events:all;}
-.slider-mute:hover{opacity:1;}
+/* Video Controls */
+.video-block{margin-bottom:60px;position:relative}
+.video-block video{display:block;width:100%;height:auto}
+.vid-controls{display:flex;align-items:center;gap:12px;padding:8px 0 0}
+.vid-btn{background:none;border:none;cursor:none;font-family:var(--mono);font-size:7px;letter-spacing:.18em;text-transform:uppercase;color:var(--fg);opacity:.5;padding:0;transition:opacity .2s;flex-shrink:0}
+.vid-btn:hover{opacity:1}
+.vid-scrubber-wrap{flex:1;position:relative;height:12px;display:flex;align-items:center;cursor:none}
+.vid-scrubber-track{position:absolute;left:0;right:0;height:1px;background:var(--dim)}
+.vid-scrubber-fill{position:absolute;left:0;top:0;height:100%;width:0%;background:var(--fg);pointer-events:none}
+.vid-scrubber-thumb{position:absolute;top:50%;width:5px;height:5px;background:var(--fg);border-radius:50%;transform:translate(-50%,-50%);pointer-events:none;transition:transform .1s}
+.vid-scrubber-wrap:hover .vid-scrubber-thumb{transform:translate(-50%,-50%) scale(1.5)}
+.vid-time{font-size:7px;letter-spacing:.12em;color:#aaa;flex-shrink:0;min-width:60px;text-align:right}
+/* Slider */
+.slider-frame{width:100%;position:relative;margin-bottom:0;overflow:hidden}
+.slider-frame img.active{display:block;width:100%;height:auto}
+.slider-frame video.slider-vid{display:none;width:100%;height:auto}
+.slider-mute{position:absolute;bottom:12px;right:12px;background:rgba(245,244,240,0.88);border:1px solid var(--dim);color:var(--fg);font-family:var(--mono);font-size:7px;letter-spacing:.18em;text-transform:uppercase;padding:5px 10px;cursor:none;opacity:0;pointer-events:none;transition:opacity .2s;z-index:5}
+.slider-mute.show{opacity:.7;pointer-events:all}
+.slider-mute:hover{opacity:1}
 .slider-nav{display:flex;align-items:center;gap:20px;margin-top:12px}
 .slider-nav button{background:none;border:none;cursor:none;font-size:8px;letter-spacing:.2em;color:var(--fg);opacity:.5;padding:0;font-family:var(--mono);text-transform:uppercase;transition:opacity .2s}
 .slider-nav button:hover{opacity:1}
 .slider-nav span{font-size:7px;letter-spacing:.2em;color:#aaa}
 #slider-text{font-size:11px;line-height:2.1;color:var(--mid);letter-spacing:.04em}
 #slider-text p+p{margin-top:1.4em}
-
-/* ── SPLIT FOOTER ─────────────────────────── */
-.split-footer{
-  display:grid;grid-template-columns:1fr 1fr;
-  height:650px;margin-top:60px;
-  width:calc(100% + 28px);margin-left:-28px;
-  overflow:hidden;
-}
-.split-half{
-  position:relative;background:#1a1a1a;
-  overflow:hidden;cursor:none;text-decoration:none;display:block;
-  pointer-events:all !important;z-index:1;
-}
-.split-half.split-next{border-left:none;}
-.vticker-track{
-  position:absolute;left:0;right:0;
-  display:flex;flex-direction:column;align-items:center;
-  will-change:transform;
-  pointer-events:none !important;
-}
-.vticker-track img{
-  display:block;width:90%;height:auto;
-  padding:40px 0;margin:0 auto;
-  user-select:none;pointer-events:none;opacity:0.92;flex-shrink:0;
-}
-.split-hover-label{
-  position:absolute;bottom:28px;
-  font-size:7px;letter-spacing:.22em;color:rgba(255,255,255,0);
-  text-transform:uppercase;font-family:'IBM Plex Mono',monospace;
-  pointer-events:none;transition:color .25s;white-space:nowrap;
-}
-.split-half.split-last .split-hover-label{left:28px;}
-.split-half.split-next .split-hover-label{right:28px;}
-.split-half.hovered .split-hover-label{color:rgba(255,255,255,0.65);}
-.split-half.hovered .vticker-track img{opacity:1;}
-
+/* Split Footer */
+.split-footer{display:grid;grid-template-columns:1fr 1fr;height:650px;margin-top:60px;width:calc(100% + 28px);margin-left:-28px;overflow:hidden}
+.split-half{position:relative;background:#1a1a1a;overflow:hidden;cursor:none;text-decoration:none;display:block;pointer-events:all !important;z-index:1}
+.vticker-track{position:absolute;left:0;right:0;display:flex;flex-direction:column;align-items:center;will-change:transform;pointer-events:none !important}
+.vticker-track img{display:block;width:90%;height:auto;padding:40px 0;margin:0 auto;user-select:none;pointer-events:none;opacity:0.92;flex-shrink:0}
+.split-hover-label{position:absolute;bottom:28px;font-size:7px;letter-spacing:.22em;color:rgba(255,255,255,0);text-transform:uppercase;font-family:'IBM Plex Mono',monospace;pointer-events:none;transition:color .25s;white-space:nowrap}
+.split-half.split-last .split-hover-label{left:28px}
+.split-half.split-next .split-hover-label{right:28px}
+.split-half.hovered .split-hover-label{color:rgba(255,255,255,0.65)}
+.split-half.hovered .vticker-track img{opacity:1}
+/* Ruler / Cursor */
 #ruler-canvas{position:fixed;top:0;left:0;pointer-events:none;z-index:2000}
 #cx,#cy{position:fixed;pointer-events:none;z-index:9999;background:var(--accent);opacity:.5}
 #cx{height:1px;width:100vw;top:0;left:0}
@@ -153,7 +99,6 @@ nav{position:sticky;top:0;height:var(--NH);z-index:1800;display:flex;justify-con
   <div class="l-pct" id="lpct">000%</div>
   <div class="l-track"><div class="l-fill" id="lfill"></div></div>
 </div>
-
 <div id="cx"></div><div id="cy"></div><div id="cdot"></div>
 <div id="crx"></div><div id="cry"></div>
 <div id="coords">X: 0.0 cm / Y: 0.0 cm</div>
@@ -168,9 +113,10 @@ nav{position:sticky;top:0;height:var(--NH);z-index:1800;display:flex;justify-con
       <div class="nav-meta" id="nav-time">00:00:00</div>
     </nav>
 
+    <!-- BLOCK 1: Projekttext + Bilder -->
     <div class="project-layout">
       <div class="col-text">
-        <div class="proj-nr">04 / 2024</div>
+        <div class="proj-nr">2025-2026</div>
         <h1 class="proj-title">Village_Sarabhai</h1>
         <div class="meta-table">
           <div class="meta-row"><span class="meta-label">Typologie</span><span class="meta-value">Wohnen</span></div>
@@ -178,13 +124,12 @@ nav{position:sticky;top:0;height:var(--NH);z-index:1800;display:flex;justify-con
           <div class="meta-row"><span class="meta-label">Jahr</span><span class="meta-value">2025-26</span></div>
           <div class="meta-row"><span class="meta-label">Modul</span><span class="meta-value">Entwerfen</span></div>
           <div class="meta-row"><span class="meta-label">Gruppenpartner</span><span class="meta-value">Justus Büttner</span></div>
-          <div class="meta-row"><span class="meta-label">Professur</span><span class="meta-value">Prof.in Marianne Müller AA., <br>Dana Andronescu M.Sc.</span></div>
+          <div class="meta-row"><span class="meta-label">Professur</span><span class="meta-value">Prof.in Marianne Müller AA.,<br>Dana Andronescu M.Sc.</span></div>
         </div>
         <div class="proj-text">
           <p>Ausgangspunkt unseres Projekts war die Villa Sarabhai von Le Corbusier, deren Grundrissstruktur wir zunächst intensiv untersuchten und anschließend transformierten, bis wir eine eigenständige, schlüssige Anordnung von Räumen und Beziehungen gefunden hatten. Aufbauend auf dieser neu entwickelten Grundrisskonstellation begannen wir, im Bestand gestalterisch einzugreifen. Ein zentrales Element war das Voranstellen einer Bogenarkade vor die Fassade, die sowohl räumlich als auch atmosphärisch an die vorhandenen Bogentonnendecken anknüpft und deren Motiv weiterführt. Dadurch entsteht eine stärkere plastische Tiefe sowie eine vermittelnde Zone zwischen Innen- und Außenraum. Auch in der Materialität und Farbigkeit orientierten wir uns am Kontext: Warme, erdige Rottöne greifen die architektonische Sprache des Ortes sowie die landschaftlichen und kulturellen Bezüge Indiens auf und verleihen dem Entwurf eine ortsspezifische Identität.</p>
         </div>
       </div>
-
       <div class="col-images">
         <div class="img-block">
           <img src="../../sarabhai/rendertop.png" alt="Renderaußen">
@@ -194,8 +139,17 @@ nav{position:sticky;top:0;height:var(--NH);z-index:1800;display:flex;justify-con
           <img src="../../sarabhai/villa_sarabhai.jpg" alt="Bestandsaufnahme">
           <div class="img-caption">Villa Sarabhai © FLC / ADAGP / Manuel Bougot</div>
         </div>
+      </div>
+    </div>
 
-        <!-- VIDEO MIT CUSTOM CONTROLS -->
+    <!-- BLOCK 2: Wandscheiben-Text + Video -->
+    <div class="project-layout">
+      <div class="col-text" style="padding-top:0">
+        <div class="proj-text">
+          <p>Die räumliche Organisation der Villa Sarabhai wird maßgeblich durch ein System massiver, raumbildender Wandscheiben geprägt. Diese Schotten strukturieren den Grundriss und erzeugen eine klare Abfolge von Zonen, die sich entlang der massiven Elemente entwickeln. Gleichzeitig werden diese Wände gezielt durchbrochen, sodass Öffnungen, Durchblicke und Übergänge zwischen den Räumen entstehen. Auf diese Weise entsteht ein Spannungsfeld zwischen klarer struktureller Ordnung und räumlicher Durchlässigkeit, in dem sich einzelne Bereiche definieren, ohne vollständig voneinander getrennt zu sein.</p>
+        </div>
+      </div>
+      <div class="col-images" style="padding-top:0">
         <div class="video-block">
           <video id="vid-standalone" autoplay muted loop playsinline>
             <source src="../../sarabhai/animation.mp4" type="video/mp4">
@@ -213,14 +167,25 @@ nav{position:sticky;top:0;height:var(--NH);z-index:1800;display:flex;justify-con
           </div>
           <div class="img-caption" style="margin-top:6px">Villa Sarabhai, Le Corbusier 1951-56</div>
         </div>
+      </div>
+    </div>
 
+    <!-- BLOCK 3: Konstellation-Text + Bild -->
+    <div class="project-layout">
+      <div class="col-text" style="padding-top:0">
+        <div class="proj-text">
+          <p>Die räumlichen Prinzipien der Villa Sarabhai werden in der Interpretation als Grundlage für eine größere Wohnanlage verstanden. Ausgehend vom schottenbasierten Grundriss entstehen modulare Wohneinheiten, die zu einer Konstellation mehrerer Wohnungen zusammengefügt werden. Durch ihre versetzte Anordnung bildet sich ein komplexes räumliches Gefüge, das weniger als geschlossenes Gebäude, sondern vielmehr als eine Art architektonisches „Village" funktioniert. Zwischenräume, Durchgänge und gemeinschaftliche Bereiche schaffen zahlreiche Möglichkeiten für Begegnung und Interaktion und verbinden private Rückzugsorte mit gemeinschaftlichem Leben innerhalb der Anlage.</p>
+        </div>
+      </div>
+      <div class="col-images" style="padding-top:0">
         <div class="img-block">
-          <img src="../../sarabhai/Konstellation.png" alt="Grundriss">
-          <div class="img-caption">Grundriss</div>
+          <img src="../../sarabhai/Konstellation.png" alt="Konstellation">
+          <div class="img-caption">Konstellation</div>
         </div>
       </div>
     </div>
 
+    <!-- BLOCK 4: Slider -->
     <div class="project-layout">
       <div class="col-text">
         <div id="slider-text"></div>
@@ -244,11 +209,11 @@ nav{position:sticky;top:0;height:var(--NH);z-index:1800;display:flex;justify-con
     <div class="split-footer">
       <a href="../Tiny_House/index.html" class="split-half split-last">
         <div class="vticker-track" id="vtick-last"></div>
-        <div class="split-hover-label">← Tiny_House</div>
+        <div class="split-hover-label">&larr; Tiny_House</div>
       </a>
-      <a href="../Markethall/index.html" class="split-half split-next">
+      <a href="../sketches/index.html" class="split-half split-next">
         <div class="vticker-track" id="vtick-next"></div>
-        <div class="split-hover-label">Markethall_Heilbronn →</div>
+        <div class="split-hover-label">Fotographie &rarr;</div>
       </a>
     </div>
 
@@ -266,67 +231,29 @@ nav{position:sticky;top:0;height:var(--NH);z-index:1800;display:flex;justify-con
   },55);
 })();
 
-/* ── VIDEO CONTROLS ── */
+/* VIDEO CONTROLS */
 (function(){
-  var vid    = document.getElementById('vid-standalone');
-  var btnPP  = document.getElementById('btn-playpause');
-  var btnM   = document.getElementById('btn-standalone');
-  var wrap   = document.getElementById('scrubber-wrap');
-  var fill   = document.getElementById('scrubber-fill');
-  var thumb  = document.getElementById('scrubber-thumb');
-  var timeEl = document.getElementById('vid-time-display');
-  var dragging = false;
-
-  function fmt(s){
-    s = Math.floor(s || 0);
-    return Math.floor(s / 60) + ':' + (s % 60 < 10 ? '0' : '') + (s % 60);
-  }
-  function setProgress(pct){
-    fill.style.width = pct + '%';
-    thumb.style.left = pct + '%';
-  }
-  function updateTime(){
-    var dur = vid.duration || 0;
-    var cur = vid.currentTime || 0;
-    var pct = dur ? (cur / dur) * 100 : 0;
-    setProgress(pct);
-    timeEl.textContent = fmt(cur) + ' / ' + fmt(dur);
-  }
-
-  vid.addEventListener('timeupdate', updateTime);
-  vid.addEventListener('loadedmetadata', updateTime);
-
-  /* Play / Pause */
-  btnPP.addEventListener('click', function(){
-    if(vid.paused){ vid.play(); btnPP.textContent = 'Pause'; }
-    else { vid.pause(); btnPP.textContent = 'Play'; }
-  });
-  vid.addEventListener('play',  function(){ btnPP.textContent = 'Pause'; });
-  vid.addEventListener('pause', function(){ btnPP.textContent = 'Play'; });
-
-  /* Mute */
-  btnM.addEventListener('click', function(){
-    vid.muted = !vid.muted;
-    btnM.textContent = vid.muted ? 'Ton ein' : 'Ton aus';
-  });
-
-  /* Scrubber — click & drag */
-  function seekFromEvent(e){
-    var rect = wrap.getBoundingClientRect();
-    var pct  = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
-    vid.currentTime = pct * (vid.duration || 0);
-    setProgress(pct * 100);
-  }
-  wrap.addEventListener('mousedown', function(e){
-    dragging = true;
-    seekFromEvent(e);
-  });
-  document.addEventListener('mousemove', function(e){
-    if(dragging) seekFromEvent(e);
-  });
-  document.addEventListener('mouseup', function(){
-    dragging = false;
-  });
+  var vid=document.getElementById('vid-standalone');
+  var btnPP=document.getElementById('btn-playpause');
+  var btnM=document.getElementById('btn-standalone');
+  var wrap=document.getElementById('scrubber-wrap');
+  var fill=document.getElementById('scrubber-fill');
+  var thumb=document.getElementById('scrubber-thumb');
+  var timeEl=document.getElementById('vid-time-display');
+  var dragging=false;
+  function fmt(s){s=Math.floor(s||0);return Math.floor(s/60)+':'+(s%60<10?'0':'')+(s%60);}
+  function setProgress(pct){fill.style.width=pct+'%';thumb.style.left=pct+'%';}
+  function updateTime(){var dur=vid.duration||0,cur=vid.currentTime||0;setProgress(dur?(cur/dur)*100:0);timeEl.textContent=fmt(cur)+' / '+fmt(dur);}
+  vid.addEventListener('timeupdate',updateTime);
+  vid.addEventListener('loadedmetadata',updateTime);
+  btnPP.addEventListener('click',function(){if(vid.paused){vid.play();btnPP.textContent='Pause';}else{vid.pause();btnPP.textContent='Play';}});
+  vid.addEventListener('play',function(){btnPP.textContent='Pause';});
+  vid.addEventListener('pause',function(){btnPP.textContent='Play';});
+  btnM.addEventListener('click',function(){vid.muted=!vid.muted;btnM.textContent=vid.muted?'Ton ein':'Ton aus';});
+  function seekFromEvent(e){var rect=wrap.getBoundingClientRect(),pct=Math.max(0,Math.min(1,(e.clientX-rect.left)/rect.width));vid.currentTime=pct*(vid.duration||0);setProgress(pct*100);}
+  wrap.addEventListener('mousedown',function(e){dragging=true;seekFromEvent(e);});
+  document.addEventListener('mousemove',function(e){if(dragging)seekFromEvent(e);});
+  document.addEventListener('mouseup',function(){dragging=false;});
 })();
 
 /* SLIDER */
@@ -398,61 +325,37 @@ function tick(){var t=new Date(),pad=function(n){return String(n).padStart(2,'0'
 setInterval(tick,1000);tick();
 redrawRulers();
 
-/* ── SPLIT FOOTER TICKER ─────────────────── */
+/* SPLIT FOOTER TICKER */
 (function(){
-  var LAST_IMG = '../../Last.png';
-  var NEXT_IMG = '../../Next.png';
-  var HEIGHT   = 650;
-  var SPEED    = 120;
-
-  function buildTicker(trackEl, imgSrc, direction) {
-    var pos  = 0;
-    var last = null;
-    var seed = new Image();
-    seed.src = imgSrc;
-    seed.draggable = false;
-    seed.style.cssText = 'display:block;width:90%;height:auto;padding:40px 0;margin:0 auto;user-select:none;pointer-events:none;opacity:0.92;flex-shrink:0;';
+  var LAST_IMG='../../Last.png',NEXT_IMG='../../Next.png',HEIGHT=650,SPEED=120;
+  function buildTicker(trackEl,imgSrc,direction){
+    var pos=0,last=null;
+    var seed=new Image();seed.src=imgSrc;seed.draggable=false;
+    seed.style.cssText='display:block;width:90%;height:auto;padding:40px 0;margin:0 auto;user-select:none;pointer-events:none;opacity:0.92;flex-shrink:0;';
     trackEl.appendChild(seed);
-    function start() {
-      var seedH = seed.offsetHeight;
-      if (seedH === 0) { setTimeout(start, 50); return; }
-      var needed = Math.ceil((HEIGHT * 3) / seedH) + 3;
-      for (var i = 0; i < needed; i++) {
-        var cl = new Image();
-        cl.src = imgSrc;
-        cl.draggable = false;
-        cl.style.cssText = seed.style.cssText;
-        trackEl.appendChild(cl);
-      }
-      var totalH = (needed + 1) * seedH;
-      pos = (direction === 1) ? -(totalH - HEIGHT) : 0;
-      function loop(ts) {
-        if (last === null) last = ts;
-        var dt = (ts - last) / 1000;
-        last = ts;
-        if (direction === -1) {
-          pos -= SPEED * dt;
-          if (pos <= -totalH) pos += totalH;
-        } else {
-          pos += SPEED * dt;
-          if (pos >= 0) pos -= totalH;
-        }
-        trackEl.style.transform = 'translateY(' + pos + 'px)';
+    function start(){
+      var seedH=seed.offsetHeight;
+      if(seedH===0){setTimeout(start,50);return;}
+      var needed=Math.ceil((HEIGHT*3)/seedH)+3;
+      for(var i=0;i<needed;i++){var cl=new Image();cl.src=imgSrc;cl.draggable=false;cl.style.cssText=seed.style.cssText;trackEl.appendChild(cl);}
+      var totalH=(needed+1)*seedH;
+      pos=(direction===1)?-(totalH-HEIGHT):0;
+      function loop(ts){
+        if(last===null)last=ts;var dt=(ts-last)/1000;last=ts;
+        if(direction===-1){pos-=SPEED*dt;if(pos<=-totalH)pos+=totalH;}
+        else{pos+=SPEED*dt;if(pos>=0)pos-=totalH;}
+        trackEl.style.transform='translateY('+pos+'px)';
         requestAnimationFrame(loop);
       }
       requestAnimationFrame(loop);
     }
-    if (seed.complete && seed.naturalHeight > 0) { start(); }
-    else { seed.onload = start; }
+    if(seed.complete&&seed.naturalHeight>0){start();}else{seed.onload=start;}
   }
-
-  buildTicker(document.getElementById('vtick-last'), LAST_IMG, -1);
-  buildTicker(document.getElementById('vtick-next'), NEXT_IMG,  1);
-
-  var halves = document.querySelectorAll('.split-half');
-  halves.forEach(function(h) {
-    h.addEventListener('mouseenter', function() { h.classList.add('hovered'); });
-    h.addEventListener('mouseleave', function() { h.classList.remove('hovered'); });
+  buildTicker(document.getElementById('vtick-last'),LAST_IMG,-1);
+  buildTicker(document.getElementById('vtick-next'),NEXT_IMG,1);
+  document.querySelectorAll('.split-half').forEach(function(h){
+    h.addEventListener('mouseenter',function(){h.classList.add('hovered');});
+    h.addEventListener('mouseleave',function(){h.classList.remove('hovered');});
   });
 })();
 </script>
