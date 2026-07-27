@@ -173,6 +173,42 @@ nav{position:sticky;top:0;height:var(--NH);z-index:1800;display:flex;justify-con
 .l-pct{font-size:8px;letter-spacing:.4em;color:var(--accent)}
 .l-track{width:180px;height:1px;background:var(--dim);position:relative}
 .l-fill{position:absolute;left:0;top:0;height:100%;width:0;background:var(--accent);transition:width .08s linear}
+
+/* ═══════ MOBILE ═══════ */
+@media (max-width: 768px){
+  html,body{cursor:auto}
+  #cx,#cy,#cdot,#crx,#cry,#coords,#ruler-canvas{display:none !important}
+
+  #scroll-root{padding-top:0;padding-left:0;-webkit-overflow-scrolling:touch}
+
+  nav{margin-left:0;padding:0 16px;gap:12px}
+  .nav-back,.nav-title,.nav-meta{font-size:7px}
+  .nav-meta{display:none}
+
+  .cv-layout{grid-template-columns:1fr;min-height:0}
+
+  .cv-left{
+    position:static;height:auto;overflow:visible;
+    padding:32px 16px 32px 16px;
+    border-right:none;border-bottom:1px solid var(--dim);
+  }
+  .cv-sub{margin-bottom:24px}
+
+  .cv-right,.cv-haltung{padding:32px 16px 40px 16px}
+  .cv-right{border-right:none;border-bottom:1px solid var(--dim)}
+  .cv-section{margin-bottom:36px}
+
+  .cv-entry{grid-template-columns:1fr;gap:2px}
+  .cv-year{padding-top:0;margin-bottom:2px}
+  .cv-desc{font-size:11px}
+  .cv-desc-sub{font-size:10px}
+
+  .skills-grid{grid-template-columns:1fr;gap:6px 0}
+  .skill-cat{margin-top:10px}
+  .skill-tag{padding:3px 0}
+
+  .haltung-text{font-size:11px;max-width:none}
+}
 </style>
 </head>
 <body>
@@ -397,7 +433,7 @@ cmProbe.style.cssText='position:fixed;width:1cm;height:1px;visibility:hidden;poi
 document.body.appendChild(cmProbe);
 function getPxPerCm(){return cmProbe.getBoundingClientRect().width;}
 
-function redrawRulers(){
+function redrawRulers(){if(window.innerWidth<=768)return;
   var cv=document.getElementById('ruler-canvas');
   var dpr=window.devicePixelRatio||1,ppc=getPxPerCm();
   var vv=window.visualViewport,W=vv?vv.width:window.innerWidth,H=vv?vv.height:window.innerHeight;

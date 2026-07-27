@@ -121,6 +121,45 @@ nav{position:sticky;top:0;height:var(--NH);z-index:1800;display:flex;justify-con
 .l-pct{font-size:8px;letter-spacing:.4em;color:var(--accent)}
 .l-track{width:180px;height:1px;background:var(--dim);position:relative}
 .l-fill{position:absolute;left:0;top:0;height:100%;width:0;background:var(--accent);transition:width .08s linear}
+
+/* ═══════ MOBILE ═══════ */
+@media (max-width: 768px){
+  html,body{cursor:auto}
+  #cx,#cy,#cdot,#crx,#cry,#coords,#ruler-canvas{display:none !important}
+
+  #scroll-root{padding-top:0;padding-left:0;-webkit-overflow-scrolling:touch}
+
+  nav{margin-left:0;padding:0 16px;gap:12px}
+  .nav-back,.nav-project,.nav-meta{font-size:7px}
+  .nav-meta{display:none}
+
+  .page-header{padding:28px 16px 20px 16px}
+  .proj-title{font-size:24px}
+
+  /* Bild oben, darunter Thumbnail-Leiste, dann Text */
+  .viewer{
+    display:flex;flex-direction:column;
+    height:auto;min-height:0;
+  }
+  .main-stage{order:1;height:46vh}
+  .thumb-panel{
+    order:2;
+    flex-direction:row;overflow-x:auto;overflow-y:hidden;
+    padding:10px 16px;gap:6px;
+    -webkit-overflow-scrolling:touch;
+  }
+  .thumb{width:74px;flex-shrink:0;cursor:auto}
+  .info-panel{order:3;padding:24px 16px 32px 16px;overflow:visible}
+  .info-desc{font-size:11px;line-height:1.9;overflow:visible}
+  .info-nav{flex-direction:row;gap:24px;align-items:center;flex-wrap:wrap}
+  .info-nav button{font-size:9px;padding:8px 0;cursor:auto}
+
+  .split-footer{height:260px;width:100%;margin-left:0;margin-top:40px}
+  .split-half{cursor:auto}
+  .split-hover-label{bottom:16px;color:rgba(255,255,255,0.65)}
+  .split-half.split-last .split-hover-label{left:16px}
+  .split-half.split-next .split-hover-label{right:16px}
+}
 </style>
 </head>
 <body>
@@ -251,7 +290,7 @@ document.body.appendChild(cmProbe);
 function getPxPerCm(){return cmProbe.getBoundingClientRect().width;}
 var $cx=document.getElementById('cx'),$cy=document.getElementById('cy'),$dot=document.getElementById('cdot'),$co=document.getElementById('coords'),$crx=document.getElementById('crx'),$cry=document.getElementById('cry');
 document.addEventListener('mousemove',function(e){var x=e.clientX,y=e.clientY;$cx.style.top=y+'px';$cy.style.left=x+'px';$dot.style.left=x+'px';$dot.style.top=y+'px';$crx.style.left=x+'px';$cry.style.top=y+'px';var ppc=getPxPerCm();$co.textContent='X: '+((x-RW+scrollRoot.scrollLeft)/ppc).toFixed(1)+' cm  /  Y: '+((y-RH+scrollRoot.scrollTop)/ppc).toFixed(1)+' cm';});
-function redrawRulers(){var cv=document.getElementById('ruler-canvas');var dpr=window.devicePixelRatio||1,ppc=getPxPerCm();var vv=window.visualViewport,W=vv?vv.width:window.innerWidth,H=vv?vv.height:window.innerHeight;cv.width=Math.round(W*dpr);cv.height=Math.round(H*dpr);cv.style.width=W+'px';cv.style.height=H+'px';var c=cv.getContext('2d');c.scale(dpr,dpr);c.clearRect(0,0,W,H);var scrollX=scrollRoot.scrollLeft/ppc,scrollY=scrollRoot.scrollTop/ppc;c.fillStyle='#f5f4f0';c.fillRect(0,0,RW,RH);c.strokeStyle='#e0deda';c.lineWidth=1;c.beginPath();c.moveTo(RW-.5,0);c.lineTo(RW-.5,RH);c.stroke();c.beginPath();c.moveTo(0,RH-.5);c.lineTo(RW,RH-.5);c.stroke();c.fillStyle='#1a1a1a';c.font='7px "IBM Plex Mono",monospace';c.textAlign='center';c.textBaseline='middle';c.fillText('cm',RW/2,RH/2);c.fillStyle='#f5f4f0';c.fillRect(RW,0,W-RW,RH);c.strokeStyle='#e0deda';c.beginPath();c.moveTo(RW,RH-.5);c.lineTo(W,RH-.5);c.stroke();c.font='7px "IBM Plex Mono",monospace';c.textAlign='left';c.textBaseline='bottom';for(var mm=Math.floor(scrollX*10);;mm++){var x=RW+(mm/10-scrollX)*ppc;if(x>W+1)break;if(x<RW)continue;var isCm=(mm%10===0),is5=(mm%5===0),th=isCm?14:is5?9:5;c.fillStyle=isCm?'#999':'#ccc';c.fillRect(Math.round(x),RH-th,1,th);if(isCm&&x>RW+2){c.fillStyle='#888';c.fillText(Math.round(mm/10)+'',x+2,RH-15);}}c.fillStyle='#f5f4f0';c.fillRect(0,RH,RW,H-RH);c.strokeStyle='#e0deda';c.beginPath();c.moveTo(RW-.5,RH);c.lineTo(RW-.5,H);c.stroke();c.font='7px "IBM Plex Mono",monospace';for(var mm2=Math.floor(scrollY*10);;mm2++){var y=RH+(mm2/10-scrollY)*ppc;if(y>H+1)break;if(y<RH)continue;var isCm2=(mm2%10===0),is52=(mm2%5===0),tw=isCm2?14:is52?9:5;c.fillStyle=isCm2?'#999':'#ccc';c.fillRect(RW-tw,Math.round(y),tw,1);if(isCm2&&y>RH+2){c.save();c.translate(RW-15,y-2);c.rotate(-Math.PI/2);c.fillStyle='#888';c.textAlign='left';c.textBaseline='alphabetic';c.fillText(Math.round(mm2/10)+'',0,0);c.restore();}}}
+function redrawRulers(){if(window.innerWidth<=768)return;var cv=document.getElementById('ruler-canvas');var dpr=window.devicePixelRatio||1,ppc=getPxPerCm();var vv=window.visualViewport,W=vv?vv.width:window.innerWidth,H=vv?vv.height:window.innerHeight;cv.width=Math.round(W*dpr);cv.height=Math.round(H*dpr);cv.style.width=W+'px';cv.style.height=H+'px';var c=cv.getContext('2d');c.scale(dpr,dpr);c.clearRect(0,0,W,H);var scrollX=scrollRoot.scrollLeft/ppc,scrollY=scrollRoot.scrollTop/ppc;c.fillStyle='#f5f4f0';c.fillRect(0,0,RW,RH);c.strokeStyle='#e0deda';c.lineWidth=1;c.beginPath();c.moveTo(RW-.5,0);c.lineTo(RW-.5,RH);c.stroke();c.beginPath();c.moveTo(0,RH-.5);c.lineTo(RW,RH-.5);c.stroke();c.fillStyle='#1a1a1a';c.font='7px "IBM Plex Mono",monospace';c.textAlign='center';c.textBaseline='middle';c.fillText('cm',RW/2,RH/2);c.fillStyle='#f5f4f0';c.fillRect(RW,0,W-RW,RH);c.strokeStyle='#e0deda';c.beginPath();c.moveTo(RW,RH-.5);c.lineTo(W,RH-.5);c.stroke();c.font='7px "IBM Plex Mono",monospace';c.textAlign='left';c.textBaseline='bottom';for(var mm=Math.floor(scrollX*10);;mm++){var x=RW+(mm/10-scrollX)*ppc;if(x>W+1)break;if(x<RW)continue;var isCm=(mm%10===0),is5=(mm%5===0),th=isCm?14:is5?9:5;c.fillStyle=isCm?'#999':'#ccc';c.fillRect(Math.round(x),RH-th,1,th);if(isCm&&x>RW+2){c.fillStyle='#888';c.fillText(Math.round(mm/10)+'',x+2,RH-15);}}c.fillStyle='#f5f4f0';c.fillRect(0,RH,RW,H-RH);c.strokeStyle='#e0deda';c.beginPath();c.moveTo(RW-.5,RH);c.lineTo(RW-.5,H);c.stroke();c.font='7px "IBM Plex Mono",monospace';for(var mm2=Math.floor(scrollY*10);;mm2++){var y=RH+(mm2/10-scrollY)*ppc;if(y>H+1)break;if(y<RH)continue;var isCm2=(mm2%10===0),is52=(mm2%5===0),tw=isCm2?14:is52?9:5;c.fillStyle=isCm2?'#999':'#ccc';c.fillRect(RW-tw,Math.round(y),tw,1);if(isCm2&&y>RH+2){c.save();c.translate(RW-15,y-2);c.rotate(-Math.PI/2);c.fillStyle='#888';c.textAlign='left';c.textBaseline='alphabetic';c.fillText(Math.round(mm2/10)+'',0,0);c.restore();}}}
 scrollRoot.addEventListener('scroll',redrawRulers,{passive:true});
 window.addEventListener('resize',redrawRulers);
 if(window.visualViewport){window.visualViewport.addEventListener('resize',redrawRulers);window.visualViewport.addEventListener('scroll',redrawRulers);}
